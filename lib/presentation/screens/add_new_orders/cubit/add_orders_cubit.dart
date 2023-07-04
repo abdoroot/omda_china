@@ -1,6 +1,5 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'dart:io';
-import 'package:china_omda/models/order_model.dart';
 import 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -66,16 +65,18 @@ class AddOrdersCubit extends Cubit<AddOrdersState> {
         .doc(uId)
         .collection('orders')
         .doc(ordrId)
-        .set(OrderModel(
-          orederId: ordrId,
-          orederType: orederType,
-          orederDate: DateTime.now().toString(),
-          userName: userName,
-          userUID: uId!,
-          orderStatus: 'Opened',
-          numberOfPassengers: numberOfPassengers,
-          interests: interests,
-        ).toMap())
+        .set(
+          OrderModel(
+            orderId: ordrId,
+            orderType: orederType,
+            orderDate: DateTime.now().toString(),
+            userName: userName,
+            userUID: uId!,
+            orderStatus: 'Opened',
+            numberOfPassengers: numberOfPassengers,
+            interests: interests,
+          ).toMap(),
+        )
         .then((value) {
       emit(MakeTourismOrderSuccess());
     }).catchError((error) {
@@ -142,9 +143,9 @@ class AddOrdersCubit extends Cubit<AddOrdersState> {
         .doc(ordrId)
         .set(
           OrderModel(
-            orederId: ordrId,
-            orederType: orederType,
-            orederDate: DateTime.now().toString(),
+            orderId: ordrId,
+            orderType: orederType,
+            orderDate: DateTime.now().toString(),
             userName: userName,
             userUID: uId!,
             orderStatus: 'Opened',

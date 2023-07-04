@@ -1,4 +1,3 @@
-import 'package:china_omda/models/order_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class ProductOrderDetails extends StatelessWidget {

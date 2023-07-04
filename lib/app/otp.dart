@@ -70,7 +70,7 @@ class OmdaOtpTextField extends StatefulWidget {
     this.borderRadius = const BorderRadius.all(Radius.circular(4.0)),
     this.inputFormatters,
   })  : assert(numberOfFields > 0),
-        assert(styles.length > 0 ? styles.length == numberOfFields : styles.length == 0);
+        assert(styles.isNotEmpty ? styles.length == numberOfFields : styles.isEmpty);
 
   @override
   _OmdaOtpTextFieldState createState() => _OmdaOtpTextFieldState();
@@ -110,7 +110,9 @@ class _OmdaOtpTextFieldState extends State<OmdaOtpTextField> {
   @override
   void dispose() {
     super.dispose();
-    _textControllers.forEach((TextEditingController? controller) => controller?.dispose());
+    for (var controller in _textControllers) {
+      controller?.dispose();
+    }
   }
 
   @override
@@ -203,7 +205,7 @@ class _OmdaOtpTextFieldState extends State<OmdaOtpTextField> {
       addFocusNodeToEachTextField(index: i);
       addTextEditingControllerToEachTextField(index: i);
 
-      if (widget.styles.length > 0) {
+      if (widget.styles.isNotEmpty) {
         return _buildTextField(
           context: context,
           index: i,
@@ -240,7 +242,7 @@ class _OmdaOtpTextFieldState extends State<OmdaOtpTextField> {
     required int indexOfTextField,
   }) {
     //only change focus to the next textField if the value entered has a length greater than one
-    if (value.length > 0) {
+    if (value.isNotEmpty) {
       //if the textField in focus is not the last textField,
       // change focus to the next textField
       if (indexOfTextField + 1 != widget.numberOfFields) {
@@ -258,7 +260,7 @@ class _OmdaOtpTextFieldState extends State<OmdaOtpTextField> {
     required int indexOfTextField,
   }) {
     //only change focus to the previous textField if the value entered has a length zero
-    if (value.length == 0) {
+    if (value.isEmpty) {
       //if the textField in focus is not the first textField,
       // change focus to the previous textField
       if (indexOfTextField != 0) {

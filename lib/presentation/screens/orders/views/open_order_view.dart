@@ -3,8 +3,13 @@ import 'package:china_omda/presentation/screens/orders/cubit/orders_cubit.dart';
 import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
 import 'package:china_omda/presentation/screens/orders/views/widget/orders_item.dart';
 
-class OpenOrderView extends StatelessWidget {
-  const OpenOrderView({Key? key}) : super(key: key);
+class OpenedOrdersView extends StatelessWidget {
+  final List<OrderModel> openOrders;
+
+  const OpenedOrdersView({
+    Key? key,
+    required this.openOrders,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +42,12 @@ class OpenOrderView extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
-                                return const OrdersItem();
+                                return OrdersItem(
+                                  orderModel: openOrders[index],
+                                  orderIndex: index,
+                                );
                               },
-                              itemCount: 6,
+                              itemCount: openOrders.length,
                             ),
                           ],
                         ),

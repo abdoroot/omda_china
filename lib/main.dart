@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => BottomNavBarCubit()),
             BlocProvider(create: (context) => ChangeControlPasswordCubit()),
             BlocProvider(create: (context) => AuthCubit()),
-            BlocProvider(create: (context) => OrdersCubit()..getOrder()),
+            BlocProvider(create: (context) => OrdersCubit()),
             BlocProvider(create: (context) => AddOrdersCubit()),
             BlocProvider(create: (context) => DrawerCubit()),
           ],

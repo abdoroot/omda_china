@@ -6,15 +6,24 @@ class ButtonOrders extends StatelessWidget {
   final Color color;
   final Color colorText;
   final double height;
-  final double width;
-  const ButtonOrders({Key? key, this.onTap, required this.text, required this.color, required this.colorText, required this.height, required this.width}) : super(key: key);
+  final double? width;
+
+  const ButtonOrders({
+    Key? key,
+    this.onTap,
+    required this.text,
+    required this.color,
+    required this.colorText,
+    required this.height,
+    this.width,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onTap ,
+      onTap: onTap,
       child: Container(
-        width: width,
+        width: 16.4.w,
         height: height,
         decoration: BoxDecoration(
           color: color,
@@ -24,7 +33,7 @@ class ButtonOrders extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 12.sp,
+            fontSize: 11.5.sp,
             fontWeight: FontWeight.w500,
             color: colorText,
           ),
