@@ -3,7 +3,6 @@ import 'package:china_omda/presentation/screens/orders/cubit/orders_cubit.dart';
 import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
 import 'package:china_omda/presentation/screens/orders/views/pay_bill_view.dart';
 import 'package:china_omda/presentation/screens/orders/views/installment_view.dart';
-import 'package:china_omda/presentation/screens/orders/views/widget/button_orders.dart';
 
 class DetailsInvoicesView extends StatelessWidget {
   const DetailsInvoicesView({Key? key}) : super(key: key);

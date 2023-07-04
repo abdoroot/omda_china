@@ -1,7 +1,6 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/orders/cubit/orders_cubit.dart';
 import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
-import 'package:china_omda/presentation/screens/orders/views/widget/orders_item.dart';
 
 class ExpiredRequestsView extends StatelessWidget {
   const ExpiredRequestsView({Key? key}) : super(key: key);
@@ -37,7 +36,7 @@ class ExpiredRequestsView extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
-                                return const OrdersItem();
+                                return const SizedBox();
                               },
                               itemCount: 6,
                             ),

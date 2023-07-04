@@ -1,4 +1,3 @@
-import 'package:china_omda/models/order_model.dart';
 import 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
@@ -18,22 +17,6 @@ class OrdersCubit extends Cubit<OrdersState> {
         .map(
           (event) => event.docs.map((e) => OrderModel.fromJson(e.data())).toList(),
         );
-  }
-
-  void getOrder() {
-    firestore
-        .collection('users')
-        .doc(uId)
-        .collection('orders')
-        .where('orderStatus', isEqualTo: 'Opened')
-        .get()
-        .then((value) {
-      print(value.docs.first.data()['id']);
-      emit(OrdersSuccessState());
-    }).catchError((error) {
-      print(error.toString());
-      emit(OrdersErrorState());
-    });
   }
 
   Stream<List<OrderModel>> getToPayOrder() {
@@ -82,5 +65,14 @@ class OrdersCubit extends Cubit<OrdersState> {
         .map(
           (event) => event.docs.map((e) => OrderModel.fromJson(e.data())).toList(),
         );
+  }
+
+  int calImages(List<Product> products) {
+    int numImages = 0;
+    for (var product in products) {
+      List<String> images = product.images!;
+      numImages += images.length;
+    }
+    return numImages;
   }
 }

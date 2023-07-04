@@ -41,6 +41,7 @@ class DocumentationView extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) {
                                   return const AddDocumentationView();
+                                  
                                 },
                               ),
                             );

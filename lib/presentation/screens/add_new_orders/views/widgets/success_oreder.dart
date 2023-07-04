@@ -1,6 +1,4 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/add_new_orders/cubit/add_orders_cubit.dart';
-import 'package:china_omda/presentation/screens/add_new_orders/cubit/add_orders_state.dart';
 import 'package:lottie/lottie.dart';
 
 class SuccessOrder extends StatelessWidget {

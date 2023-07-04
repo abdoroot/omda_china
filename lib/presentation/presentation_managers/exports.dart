@@ -78,3 +78,8 @@ export 'package:china_omda/presentation/screens/auth/views/active_code_view.dart
 export 'package:china_omda/presentation/screens/auth/views/forget_password_view.dart';
 export 'package:china_omda/presentation/screens/auth/views/login_view.dart';
 export 'package:china_omda/presentation/screens/auth/views/sign_up_view.dart';
+export 'package:china_omda/models/order_model.dart';
+export 'package:china_omda/presentation/screens/order_details/views/documentation_view.dart';
+export 'package:china_omda/presentation/screens/orders/views/invoices_view.dart';
+export 'package:china_omda/presentation/screens/orders/views/message_view.dart';
+export 'package:china_omda/presentation/screens/orders/views/widget/button_orders.dart';
