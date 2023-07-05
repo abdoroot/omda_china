@@ -130,7 +130,7 @@ class AuthCubit extends Cubit<AuthState> {
         password: '${password}china',
       )
           .then((value) {
-        emit(AuthLoginSuccessState(value.user!.uid));
+        emit(AuthLoginSuccessState(value.user!.uid, user!.accountType!));
       }).catchError((error) {
         print(error.toString());
         emit(AuthLoginErrorState());

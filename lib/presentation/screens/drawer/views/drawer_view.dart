@@ -2,9 +2,12 @@ import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class DrawerView extends StatelessWidget {
   final bool isLogin;
+  final bool? isAdmin;
+
   const DrawerView({
     super.key,
     required this.isLogin,
+    this.isAdmin = false,
   });
 
   @override
@@ -149,57 +152,71 @@ class DrawerView extends StatelessWidget {
                       width: 8.w,
                     ),
                   ),
-                  SizedBox(height: 1.h),
-                  if (isLogin == false)
-                    Column(
-                      children: [
-                        const DrawerDivider(dividerText: AppStrings.myAccount),
-                        DrawerItem(
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ProfileView(isLogin: isLogin)),
-                            );
-                          },
-                          itemText: AppStrings.profile,
-                        ),
-                        SizedBox(height: 1.h),
-                        DrawerItem(
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MyDashboardView(isLogin: isLogin)),
-                            );
-                          },
-                          itemText: AppStrings.myBoard,
-                        ),
-                        SizedBox(height: 1.h),
-                        DrawerItem(
-                          onTap: () {
-                            Navigator.pop(context);
-                            showDialog(
-                              context: context,
-                              builder: (context) => const CancelAccountDialog(),
-                            );
-                          },
-                          itemText: AppStrings.cancelAccount,
-                        ),
-                        SizedBox(height: 1.h),
-                        DrawerItem(
-                          onTap: () {
-                            retrieveCountryForIP();
-                            Navigator.pushReplacementNamed(context, Routes.loginRoute);
-
-                            CachHelper.removeData(key: 'uId');
-                          },
-                          itemText: AppStrings.logout,
-                        ),
-                      ],
+                  SizedBox(height: 2.h),
+                  if (isAdmin == true)
+                    DrawerItem(
+                      onTap: () {
+                        retrieveCountryForIP();
+                        Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                        CachHelper.removeData(key: 'uId');
+                        CachHelper.removeData(key: 'accountType');
+                        BottomNavBarCubit.get(context).screenIndex = 0;
+                      },
+                      itemText: AppStrings.logout,
                     ),
+                  if (isLogin == false)
+                    isAdmin!
+                        ? const SizedBox()
+                        : Column(
+                            children: [
+                              const DrawerDivider(dividerText: AppStrings.myAccount),
+                              DrawerItem(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProfileView(isLogin: isLogin)),
+                                  );
+                                },
+                                itemText: AppStrings.profile,
+                              ),
+                              SizedBox(height: 1.h),
+                              DrawerItem(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MyDashboardView(isLogin: isLogin)),
+                                  );
+                                },
+                                itemText: AppStrings.myBoard,
+                              ),
+                              SizedBox(height: 1.h),
+                              DrawerItem(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => const CancelAccountDialog(),
+                                  );
+                                },
+                                itemText: AppStrings.cancelAccount,
+                              ),
+                              SizedBox(height: 1.h),
+                              DrawerItem(
+                                onTap: () {
+                                  retrieveCountryForIP();
+                                  Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                                  CachHelper.removeData(key: 'uId');
+                                  CachHelper.removeData(key: 'accountType');
+                                  BottomNavBarCubit.get(context).screenIndex = 0;
+                                },
+                                itemText: AppStrings.logout,
+                              ),
+                            ],
+                          ),
                 ],
               ),
             ),

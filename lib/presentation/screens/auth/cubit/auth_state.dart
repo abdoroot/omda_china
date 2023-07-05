@@ -12,7 +12,8 @@ class AuthRegisterErrorState extends AuthState {}
 
 class AuthLoginSuccessState extends AuthState {
   String uId;
-  AuthLoginSuccessState(this.uId);
+  String accountType;
+  AuthLoginSuccessState(this.uId,this.accountType);
 }
 
 class AuthLoginErrorState extends AuthState {}

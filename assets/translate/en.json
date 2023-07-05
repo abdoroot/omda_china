@@ -71,7 +71,7 @@
     "ChangeTheAccessCode" : "Change the access code",
     "enterAccessCode" : "Enter the current access code",
     "commercial_account":"Commercial Account",
-    "persons_account":"Persons Account",
+    "b":"Persons Account",
     "company_name":"Company Name",
     "user_id":"Membership No",
     "new_order": "New\nOrder",
@@ -182,6 +182,8 @@
     "contain_batteries_5":"contact with me",
     "preview_1":"Yes, I agree to open, inspect and approve the products prior to dispatch",
     "preview_2":"I do not agree to send the product directly from the factory or merchant",
-    "empty_field":"Please fill the empty field"
+    "empty_field":"Please fill the empty field",
+    "admin" : "Admin Account",
+    "control_panel" : "Control Panel"
    
 }   
