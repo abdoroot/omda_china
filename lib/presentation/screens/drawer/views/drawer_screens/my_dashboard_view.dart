@@ -116,7 +116,8 @@ class MyDashboardView extends StatelessWidget {
                                         Navigator.of(context, rootNavigator: true).push(
                                           MaterialPageRoute(
                                             builder: (context) {
-                                              return OpenedOrdersView(openOrders: snapshot.data ?? []);
+                                              return OpenedOrdersView(
+                                                  openOrders: snapshot.data ?? []);
                                             },
                                           ),
                                         );
