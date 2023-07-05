@@ -184,6 +184,8 @@
     "preview_2":"I do not agree to send the product directly from the factory or merchant",
     "empty_field":"Please fill the empty field",
     "admin" : "Admin Account",
-    "control_panel" : "Control Panel"
+    "control_panel" : "Control Panel",
+    "users" : "Users",
+    "settings" : "Settings"
    
 }   

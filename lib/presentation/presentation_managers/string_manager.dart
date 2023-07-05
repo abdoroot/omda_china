@@ -185,4 +185,6 @@ class AppStrings {
   static const String emptyField = "empty_field";
   static const String adminAccount = "admin";
   static const String controlPanel = "control_panel";
+  static const String users = "users";
+  static const String settings = "settings";
 }
