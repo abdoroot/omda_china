@@ -26,17 +26,17 @@ class RoutesGenerator {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.loginRoute:
-        return MaterialPageRoute(builder: (_) =>  LoginView());
+        return MaterialPageRoute(builder: (_) => LoginView());
       case Routes.forgotPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgetView());
       case Routes.registerRoute:
-        return MaterialPageRoute(builder: (_) => const SignUpView());
+        return MaterialPageRoute(builder: (_) => SignUpView());
       case Routes.bottomNav:
         return MaterialPageRoute(builder: (_) => const BottomNavBarView());
       case Routes.activeCode:
         return MaterialPageRoute(builder: (_) => const ActiveCodeView());
       case Routes.changePassword:
-        return MaterialPageRoute(builder: (_) => const ChangeCodeView());
+        return MaterialPageRoute(builder: (_) => ChangeCodeView());
       case Routes.newOrders:
         return MaterialPageRoute(builder: (_) => const AddOrderView());
       case Routes.confirmTourismOrder:

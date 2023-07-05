@@ -100,10 +100,12 @@ class GlobalDropDownButton extends StatelessWidget {
               height: 1,
             ),
             //labelText: lableText,
-            label: Text(
-              lableText ?? '',
-              textAlign: TextAlign.center,
-            ),
+            label: lableText == null
+                ? null
+                : Text(
+                    lableText ?? '',
+                    textAlign: TextAlign.center,
+                  ),
             suffixIcon: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

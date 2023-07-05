@@ -1,7 +1,9 @@
+import 'package:china_omda/presentation/global_widget/omda_otp_text_field.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class SignUpView extends StatelessWidget {
-  const SignUpView({Key? key}) : super(key: key);
+  final GlobalKey<FormState> regKey = GlobalKey<FormState>();
+  SignUpView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +12,6 @@ class SignUpView extends StatelessWidget {
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
         var lang = AppStrings.lang.tr(context);
-        List<String> option = [
-          AppStrings.person.tr(context),
-          AppStrings.company.tr(context),
-        ];
         return Scaffold(
           drawerEnableOpenDragGesture: lang == 'English' ? false : true,
           endDrawerEnableOpenDragGesture: lang == 'English' ? true : false,
@@ -21,7 +19,7 @@ class SignUpView extends StatelessWidget {
           body: SafeArea(
             child: SingleChildScrollView(
               child: Form(
-                key: cubit.regKey,
+                key: regKey,
                 child: Column(
                   children: [
                     const AuthHeader(),
@@ -64,14 +62,15 @@ class SignUpView extends StatelessWidget {
                         ),
                         SizedBox(height: 2.h),
                         GlobalDropDownButton(
-                          height: 6.h,
+                          height: 7.h,
                           hintText: AppStrings.accountType,
                           value: cubit.accountType,
                           border: InputBorder.none,
                           onChanged: (String? val) {
                             cubit.selecteAccountType(val!);
                           },
-                          items: option,
+                          items: cubit.option,
+                          valueSize: 14.sp,
                         ),
                         SizedBox(height: 2.h),
                         GestureDetector(
@@ -147,16 +146,10 @@ class SignUpView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 1.h),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: AccessCodeWidget(
-                        controllers: [
-                          cubit.regFirstPassController,
-                          cubit.regSecondPassController,
-                          cubit.regThirdPassController,
-                          cubit.regFourthPassController,
-                        ],
-                      ),
+                    OmdaOtp(
+                      onSubmit: (value) {
+                        cubit.regPassController.text = value;
+                      },
                     ),
                     SizedBox(height: 2.h),
                     Text(
@@ -168,16 +161,22 @@ class SignUpView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 1.h),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: AccessCodeWidget(
-                        controllers: [
-                          cubit.regConfirmFirstPassController,
-                          cubit.regConfirmSecondPassController,
-                          cubit.regConfirmThirdPassController,
-                          cubit.regConfirmFourthPassController,
-                        ],
-                      ),
+                    OmdaOtp(
+                      onSubmit: (value) {
+                        cubit.regConfirmPassController.text = value;
+                        if (regKey.currentState!.validate()) {
+                          if (cubit.checkPassword()) {
+                            cubit.twilioServices.sendSMS(cubit.regPhoneController.text).then(
+                              (value) {
+                                Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                                  MaterialPageRoute(builder: (context) => ConfirmCodeView()),
+                                  (route) => false,
+                                );
+                              },
+                            );
+                          }
+                        }
+                      },
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,13 +184,12 @@ class SignUpView extends StatelessWidget {
                         LangButton(
                           lang: AppStrings.next.tr(context),
                           onTap: () {
-                            if (cubit.regKey.currentState!.validate()) {
+                            if (regKey.currentState!.validate()) {
                               if (cubit.checkPassword()) {
                                 cubit.twilioServices.sendSMS(cubit.regPhoneController.text).then(
                                   (value) {
                                     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) => const ConfirmCodeView()),
+                                      MaterialPageRoute(builder: (context) => ConfirmCodeView()),
                                       (route) => false,
                                     );
                                   },

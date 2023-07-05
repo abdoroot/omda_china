@@ -1,7 +1,10 @@
+import 'package:china_omda/presentation/global_widget/omda_otp_text_field.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class ChangeCodeView extends StatelessWidget {
-  const ChangeCodeView({Key? key}) : super(key: key);
+  final GlobalKey<FormState> changePasswordKey = GlobalKey<FormState>();
+
+  ChangeCodeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class ChangeCodeView extends StatelessWidget {
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Form(
-                key: cubit.changePasswordKey,
+                key: changePasswordKey,
                 child: Column(
                   children: [
                     const AuthHeader(),
@@ -55,16 +58,10 @@ class ChangeCodeView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 2.h),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: AccessCodeWidget(
-                        controllers: [
-                          cubit.changeFirstPassController,
-                          cubit.changeSecondPassController,
-                          cubit.changeThirdPassController,
-                          cubit.changeFourthPassController,
-                        ],
-                      ),
+                    OmdaOtp(
+                      onSubmit: (value) {
+                        cubit.changePassController.text = value;
+                      },
                     ),
                     SizedBox(height: 2.h),
                     Text(
@@ -76,16 +73,19 @@ class ChangeCodeView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 2.h),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: AccessCodeWidget(
-                        controllers: [
-                          cubit.confirmChangeFirstPassController,
-                          cubit.confirmChangeSecondPassController,
-                          cubit.confirmChangeThirdPassController,
-                          cubit.confirmChangeFourthPassController,
-                        ],
-                      ),
+                    OmdaOtp(
+                      onSubmit: (p0) {
+                        cubit.confirmChangePassController.text = p0;
+                        String newPassword = cubit.changePassController.text;
+                        if (changePasswordKey.currentState!.validate()) {
+                          if (cubit.checkNewPassword()) {
+                            cubit.changePassword(
+                              phone: cubit.forgetPasswordController.text,
+                              newPassword: newPassword,
+                            );
+                          }
+                        }
+                      },
                     ),
                     SizedBox(height: 8.h),
                     Row(
@@ -94,11 +94,8 @@ class ChangeCodeView extends StatelessWidget {
                         LangButton(
                           lang: AppStrings.next.tr(context),
                           onTap: () {
-                            String newPassword = cubit.changeFirstPassController.text +
-                                cubit.changeSecondPassController.text +
-                                cubit.changeThirdPassController.text +
-                                cubit.changeFourthPassController.text;
-                            if (cubit.changePasswordKey.currentState!.validate()) {
+                            String newPassword = cubit.changePassController.text;
+                            if (changePasswordKey.currentState!.validate()) {
                               if (cubit.checkNewPassword()) {
                                 cubit.changePassword(
                                   phone: cubit.forgetPasswordController.text,
