@@ -1,4 +1,5 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
+import 'package:china_omda/presentation/screens/admin_panel/widgets/settings_item.dart';
 
 class ControlPanelView extends StatelessWidget {
   const ControlPanelView({super.key});
@@ -88,7 +89,7 @@ class ControlPanelView extends StatelessWidget {
                             text: AppStrings.open.tr(context),
                             textNum: snapshot.data == null || snapshot.data!.isEmpty
                                 ? '0'
-                                : snapshot.data!.length.toString(),
+                                : '${snapshot.data!.length}',
                           );
                         },
                       ),
@@ -109,7 +110,7 @@ class ControlPanelView extends StatelessWidget {
                             text: AppStrings.pay.tr(context),
                             textNum: snapshot.data == null || snapshot.data!.isEmpty
                                 ? '0'
-                                : snapshot.data!.length.toString(),
+                                : '${snapshot.data!.length}',
                             left: 3.w,
                           );
                         },
@@ -131,7 +132,7 @@ class ControlPanelView extends StatelessWidget {
                             text: AppStrings.finished.tr(context),
                             textNum: snapshot.data == null || snapshot.data!.isEmpty
                                 ? '0'
-                                : snapshot.data!.length.toString(),
+                                : '${snapshot.data!.length}',
                             right: 3.w,
                           );
                         },
@@ -153,7 +154,7 @@ class ControlPanelView extends StatelessWidget {
                             text: AppStrings.byShipment.tr(context),
                             textNum: snapshot.data == null || snapshot.data!.isEmpty
                                 ? '0'
-                                : snapshot.data!.length.toString(),
+                                : '${snapshot.data!.length}',
                           );
                         },
                       ),
@@ -188,93 +189,29 @@ class ControlPanelView extends StatelessWidget {
                   Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          StreamBuilder<List<OrderModel>>(
-                            stream: null, //getOpenedOrder(),
-                            builder: (context, snapshot) {
-                              return DashboardItem(
-                                onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return OpenedOrdersView(openOrders: snapshot.data ?? []);
-                                      },
-                                    ),
-                                  );
-                                },
-                                image: ImageAssets.choices,
-                                text: AppStrings.open.tr(context),
-                                textNum: snapshot.data == null || snapshot.data!.isEmpty
-                                    ? '0'
-                                    : snapshot.data!.length.toString(),
-                              );
+                          SettingsItem(
+                            onTap: () {
+                              Navigator.pushNamed(context, Routes.eventView);
                             },
+                            image: 'assets/images/event.png',
+                            text: AppStrings.events.tr(context),
                           ),
-                          StreamBuilder<List<OrderModel>>(
-                            stream: null, //getToPayOrder(),
-                            builder: (context, snapshot) {
-                              return DashboardItem(
-                                onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const RequestsNeedPaymentView();
-                                      },
-                                    ),
-                                  );
-                                },
-                                image: ImageAssets.pay,
-                                text: AppStrings.pay.tr(context),
-                                textNum: snapshot.data == null || snapshot.data!.isEmpty
-                                    ? '0'
-                                    : snapshot.data!.length.toString(),
-                                left: 3.w,
-                              );
-                            },
+                          SettingsItem(
+                            onTap: () {},
+                            image: 'assets/images/holiday.png',
+                            text: AppStrings.holidays.tr(context),
                           ),
-                          StreamBuilder<List<OrderModel>>(
-                            stream: null, //getFinishedOrder(),
-                            builder: (context, snapshot) {
-                              return DashboardItem(
-                                onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const ExpiredRequestsView();
-                                      },
-                                    ),
-                                  );
-                                },
-                                image: ImageAssets.done,
-                                text: AppStrings.finished.tr(context),
-                                textNum: snapshot.data == null || snapshot.data!.isEmpty
-                                    ? '0'
-                                    : snapshot.data!.length.toString(),
-                                right: 3.w,
-                              );
-                            },
+                          SettingsItem(
+                            onTap: () {},
+                            image: 'assets/images/banners.png',
+                            text: AppStrings.banners.tr(context),
                           ),
-                          StreamBuilder<List<OrderModel>>(
-                            stream: null, //getShipmentOrder(),
-                            builder: (context, snapshot) {
-                              return DashboardItem(
-                                onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const RequestsOrderView();
-                                      },
-                                    ),
-                                  );
-                                },
-                                image: ImageAssets.verified,
-                                text: AppStrings.byShipment.tr(context),
-                                textNum: snapshot.data == null || snapshot.data!.isEmpty
-                                    ? '0'
-                                    : snapshot.data!.length.toString(),
-                              );
-                            },
+                          SettingsItem(
+                            onTap: () {},
+                            image: 'assets/images/constant.png',
+                            text: AppStrings.constants.tr(context),
                           ),
                         ],
                       ),
@@ -282,70 +219,20 @@ class ControlPanelView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          StreamBuilder<List<OrderModel>>(
-                            stream: null, //getToPayOrder(),
-                            builder: (context, snapshot) {
-                              return DashboardItem(
-                                onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const RequestsNeedPaymentView();
-                                      },
-                                    ),
-                                  );
-                                },
-                                image: ImageAssets.pay,
-                                text: AppStrings.pay.tr(context),
-                                textNum: snapshot.data == null || snapshot.data!.isEmpty
-                                    ? '0'
-                                    : snapshot.data!.length.toString(),
-                                left: 3.w,
-                              );
-                            },
+                          SettingsItem(
+                            onTap: () {},
+                            image: 'assets/images/chat.png',
+                            text: AppStrings.foreignChats.tr(context),
                           ),
-                          StreamBuilder<List<OrderModel>>(
-                            stream: null, //getFinishedOrder(),
-                            builder: (context, snapshot) {
-                              return DashboardItem(
-                                onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const ExpiredRequestsView();
-                                      },
-                                    ),
-                                  );
-                                },
-                                image: ImageAssets.done,
-                                text: AppStrings.finished.tr(context),
-                                textNum: snapshot.data == null || snapshot.data!.isEmpty
-                                    ? '0'
-                                    : snapshot.data!.length.toString(),
-                                right: 3.w,
-                              );
-                            },
+                          SettingsItem(
+                            onTap: () {},
+                            image: 'assets/images/cash.png',
+                            text: AppStrings.paymentGateways.tr(context),
                           ),
-                          StreamBuilder<List<OrderModel>>(
-                            stream: null, //getShipmentOrder(),
-                            builder: (context, snapshot) {
-                              return DashboardItem(
-                                onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const RequestsOrderView();
-                                      },
-                                    ),
-                                  );
-                                },
-                                image: ImageAssets.verified,
-                                text: AppStrings.byShipment.tr(context),
-                                textNum: snapshot.data == null || snapshot.data!.isEmpty
-                                    ? '0'
-                                    : snapshot.data!.length.toString(),
-                              );
-                            },
+                          SettingsItem(
+                            onTap: () {},
+                            image: 'assets/images/payment.png',
+                            text: AppStrings.profitsAndLosses.tr(context),
                           ),
                         ],
                       ),

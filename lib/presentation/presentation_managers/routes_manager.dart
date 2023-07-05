@@ -1,6 +1,8 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/add_new_orders/views/widgets/success_oreder.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/add_events.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/admin_panel_view.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/events_view.dart';
 
 class Routes {
   static const String splashRoute = '/';
@@ -20,6 +22,8 @@ class Routes {
   static const String confirmProductOrder = '/confirmProductOrder';
   static const String successOrder = '/successOrder';
   static const String adminPanel = '/adminPanel';
+  static const String eventView = '/eventView';
+  static const String addEvent = '/addEvent';
 }
 
 class RoutesGenerator {
@@ -53,6 +57,10 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const SuccessOrder());
       case Routes.adminPanel:
         return MaterialPageRoute(builder: (_) => const AdminPanelView());
+      case Routes.eventView:
+        return MaterialPageRoute(builder: (_) => const EventsView());
+      case Routes.addEvent:
+        return MaterialPageRoute(builder: (_) => AddEvents());
 
       default:
         return unDefinedRoute();

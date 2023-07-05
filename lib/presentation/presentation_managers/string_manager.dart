@@ -187,4 +187,23 @@ class AppStrings {
   static const String controlPanel = "control_panel";
   static const String users = "users";
   static const String settings = "settings";
+  static const String events = "events";
+  static const String holidays = "holidays";
+  static const String banners = "banners";
+  static const String constants = "constants";
+  static const String foreignChats = "foreign_chats";
+  static const String paymentGateways = "payment_gateways";
+  static const String profitsAndLosses = "profits_and_losses";
+  static const String enteredEvents = "entered_events";
+  static const String numberOfEvents = "number_of_events";
+  static const String startDate = "start_date";
+  static const String title = "title";
+  static const String details = "details";
+  static const String status = "status";
+  static const String addEvent = "add_event";
+  static const String titleEn = "title_en";
+  static const String titleAr = "title_ar";
+  static const String detailsEn = "details_en";
+  static const String detailsAr = "details_ar";
+
 }

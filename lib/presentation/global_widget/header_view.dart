@@ -68,11 +68,14 @@ class HeaderView extends StatelessWidget {
           ),
           Positioned(
             bottom: 8.h,
+            left: 0,
+            right: 0,
             child: Text(
               headerText.tr(context),
               style: TextStyle(
                 color: headerTextColor ?? ColorManager.primaryGreen,
-                fontSize: 20.sp,
+                fontSize: 18.sp,
+                height: 0.75,
               ),
               textAlign: TextAlign.center,
             ),

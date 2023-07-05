@@ -187,7 +187,35 @@
    "admin" : "حساب الادمن",
    "control_panel" : "لوحة التحكم",
    "users" : "المستخدمين",
-   "settings" : "الاعدادات"
+   "settings" : "الاعدادات",
+   "events":"الفعاليات",
+   "holidays":"العطل",
+   "banners" : "البنرات",
+   "constants":"الثوابت",
+   "foreign_chats" : "المراسلات الخارجية",
+   "payment_gateways":"بوابات الدفع",
+   "profits_and_losses":"الأرباح و الخسائر",
+   "entered_events":"الفعاليات المدخلة",
+   "number_of_events" : "عدد الفعاليات ",
+   "start_date":"تاريخ البداية",
+   "title" : "العنوان",
+   "details":"التفاصيل",
+   "title_en" : "العنوان - انجليزي",
+   "title_ar" : "العنوان - عربي",
+   "details_en":"التفاصيل - انجليزي",
+   "details_ar":"التفاصيل - عربي",
+   "status":"الحالة",
+   "add_event" : "العرض والتعديل على الفعالية"
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -35,7 +35,7 @@ class GlobalDropDownButton extends StatelessWidget {
       child: SizedBox(
         height: height,
         width: width,
-        child: DropdownButtonFormField<String>(
+        child: DropdownButtonFormField(
           items: items!.map((String value) {
             return DropdownMenuItem<String>(
               value: value,
