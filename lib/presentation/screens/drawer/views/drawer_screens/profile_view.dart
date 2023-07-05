@@ -104,8 +104,9 @@ class ProfileView extends StatelessWidget {
                             StreamBuilder<UserModel>(
                               stream: cubit.getUserData(),
                               builder: (context, snapshot) {
-                                cubit.accountTypeController.text =
-                                    snapshot.data == null ? '' : snapshot.data!.accountType ?? '';
+                                cubit.accountTypeController.text = snapshot.data == null
+                                    ? ''
+                                    : snapshot.data!.accountType!.tr(context);
                                 return OmdaTextFormFiled(
                                   lableText: AppStrings.accountType,
                                   enabled: false,

@@ -44,7 +44,7 @@ class DrawerView extends StatelessWidget {
                                   Text(
                                     snapshot.data == null
                                         ? ''
-                                        : snapshot.data!.accountType ?? 'account type',
+                                        : snapshot.data!.accountType!.tr(context),
                                     style: TextStyle(
                                       color: ColorManager.white,
                                       fontSize: 15.sp,
@@ -76,7 +76,7 @@ class DrawerView extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  LoginView(),
+                            builder: (context) => LoginView(),
                           ),
                           (route) => true,
                         );
@@ -191,7 +191,9 @@ class DrawerView extends StatelessWidget {
                         SizedBox(height: 1.h),
                         DrawerItem(
                           onTap: () {
+                            retrieveCountryForIP();
                             Navigator.pushReplacementNamed(context, Routes.loginRoute);
+
                             CachHelper.removeData(key: 'uId');
                           },
                           itemText: AppStrings.logout,

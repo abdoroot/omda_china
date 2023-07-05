@@ -138,6 +138,7 @@ class ConfirmTourismOrder extends StatelessWidget {
                                             .then(
                                           (value) {
                                             Navigator.pushNamed(context, Routes.successOrder);
+                                            cubit.clearTourismController();
                                           },
                                         );
                                       },

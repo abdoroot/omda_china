@@ -70,8 +70,8 @@ class AppStrings {
   static const String canceled = "canceled";
   static const String changeAccess = "ChangeTheAccessCode";
   static const String enterAccessCode = "enterAccessCode";
-  static const String personAccount = "person_account";
-  static const String companyAccount = "company_account";
+  static const String personsAccount = "persons_account";
+  static const String commercialAccount = "commercial_account";
   static const String companyName = "company_name";
   static const String userId = "user_id";
   static const String newOrder = "new_order";

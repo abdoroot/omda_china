@@ -12,48 +12,26 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController loginPasswordOtp = TextEditingController();
 
   // Sign up
-  var regKey = GlobalKey<FormState>();
   TextEditingController regNameController = TextEditingController();
   TextEditingController regPhoneController = TextEditingController();
   TextEditingController regEmailController = TextEditingController();
   TextEditingController regCountryController = TextEditingController();
-  TextEditingController regFirstPassController = TextEditingController();
-  TextEditingController regSecondPassController = TextEditingController();
-  TextEditingController regThirdPassController = TextEditingController();
-  TextEditingController regFourthPassController = TextEditingController();
-  TextEditingController regConfirmFirstPassController = TextEditingController();
-  TextEditingController regConfirmSecondPassController = TextEditingController();
-  TextEditingController regConfirmThirdPassController = TextEditingController();
-  TextEditingController regConfirmFourthPassController = TextEditingController();
+  TextEditingController regPassController = TextEditingController();
+  TextEditingController regConfirmPassController = TextEditingController();
 
   // confirm
-  var confirmKey = GlobalKey<FormState>();
-  TextEditingController confirmFirstPassController = TextEditingController();
-  TextEditingController confirmSecondPassController = TextEditingController();
-  TextEditingController confirmThirdPassController = TextEditingController();
-  TextEditingController confirmFourthPassController = TextEditingController();
+  TextEditingController confirmCodeController = TextEditingController();
 
   // forget password
   var forgetKey = GlobalKey<FormState>();
   TextEditingController forgetPasswordController = TextEditingController();
 
   // active code
-  var activeCodeKey = GlobalKey<FormState>();
-  TextEditingController activeFirstPassController = TextEditingController();
-  TextEditingController activeSecondPassController = TextEditingController();
-  TextEditingController activeThirdPassController = TextEditingController();
-  TextEditingController activeFourthPassController = TextEditingController();
+  TextEditingController activeCodeController = TextEditingController();
 
   // change password
-  var changePasswordKey = GlobalKey<FormState>();
-  TextEditingController changeFirstPassController = TextEditingController();
-  TextEditingController changeSecondPassController = TextEditingController();
-  TextEditingController changeThirdPassController = TextEditingController();
-  TextEditingController changeFourthPassController = TextEditingController();
-  TextEditingController confirmChangeFirstPassController = TextEditingController();
-  TextEditingController confirmChangeSecondPassController = TextEditingController();
-  TextEditingController confirmChangeThirdPassController = TextEditingController();
-  TextEditingController confirmChangeFourthPassController = TextEditingController();
+  TextEditingController changePassController = TextEditingController();
+  TextEditingController confirmChangePassController = TextEditingController();
 
   bool checkCode(String code) {
     if (twilioServices.code.toString() == code) {
@@ -64,10 +42,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   bool checkPassword() {
-    if (regFirstPassController.text == regConfirmFirstPassController.text &&
-        regSecondPassController.text == regConfirmSecondPassController.text &&
-        regThirdPassController.text == regConfirmThirdPassController.text &&
-        regFourthPassController.text == regConfirmFourthPassController.text) {
+    if (regPassController.text == regConfirmPassController.text) {
       return true;
     } else {
       return false;
@@ -75,10 +50,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   bool checkNewPassword() {
-    if (changeFirstPassController.text == confirmChangeFirstPassController.text &&
-        changeSecondPassController.text == confirmChangeSecondPassController.text &&
-        changeThirdPassController.text == confirmChangeThirdPassController.text &&
-        changeFourthPassController.text == confirmChangeFourthPassController.text) {
+    if (changePassController.text == confirmChangePassController.text) {
       return true;
     } else {
       return false;
@@ -86,6 +58,10 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   String? accountType;
+  List<String> option = [
+    AppStrings.personsAccount,
+    AppStrings.commercialAccount,
+  ];
 
   void selecteAccountType(String value) {
     accountType = value;
@@ -136,19 +112,7 @@ class AuthCubit extends Cubit<AuthState> {
     regPhoneController.clear();
     regEmailController.clear();
     regCountryController.clear();
-    regFirstPassController.clear();
-    regSecondPassController.clear();
-    regThirdPassController.clear();
-    regFourthPassController.clear();
-    regConfirmFirstPassController.clear();
-    regConfirmSecondPassController.clear();
-    regConfirmThirdPassController.clear();
-    regConfirmFourthPassController.clear();
-
-    confirmFirstPassController.clear();
-    confirmSecondPassController.clear();
-    confirmThirdPassController.clear();
-    confirmFourthPassController.clear();
+    confirmCodeController.clear();
   }
 
   Future<void> userLogin({
@@ -203,18 +167,9 @@ class AuthCubit extends Cubit<AuthState> {
 
   void clearChangePasswordText() {
     forgetPasswordController.clear();
-    activeFirstPassController.clear();
-    activeSecondPassController.clear();
-    activeThirdPassController.clear();
-    activeFourthPassController.clear();
-    changeFirstPassController.clear();
-    changeSecondPassController.clear();
-    changeThirdPassController.clear();
-    changeFourthPassController.clear();
-    confirmChangeFirstPassController.clear();
-    confirmChangeSecondPassController.clear();
-    confirmChangeThirdPassController.clear();
-    confirmChangeFourthPassController.clear();
+    activeCodeController.clear();
+    changePassController.clear();
+    confirmChangePassController.clear();
   }
 
   Future<void> changePasswordMessage({

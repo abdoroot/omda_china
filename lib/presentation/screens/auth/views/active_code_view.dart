@@ -1,3 +1,4 @@
+import 'package:china_omda/presentation/global_widget/omda_otp_text_field.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class ActiveCodeView extends StatefulWidget {
@@ -11,6 +12,7 @@ class _ActiveCodeViewState extends State<ActiveCodeView> {
   bool isClickable = false;
   int remainingTime = 60;
   Timer? timer;
+  final GlobalKey<FormState> activeCodeKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -63,7 +65,7 @@ class _ActiveCodeViewState extends State<ActiveCodeView> {
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Form(
-                key: cubit.activeCodeKey,
+                key: activeCodeKey,
                 child: Column(
                   children: [
                     const AuthHeader(),
@@ -93,16 +95,16 @@ class _ActiveCodeViewState extends State<ActiveCodeView> {
                       ),
                     ),
                     SizedBox(height: 3.h),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: AccessCodeWidget(
-                        controllers: [
-                          cubit.activeFirstPassController,
-                          cubit.activeSecondPassController,
-                          cubit.activeThirdPassController,
-                          cubit.activeFourthPassController,
-                        ],
-                      ),
+                    OmdaOtp(
+                      onSubmit: (value) {
+                        cubit.activeCodeController.text = value;
+                        String code = cubit.activeCodeController.text;
+                        if (activeCodeKey.currentState!.validate()) {
+                          if (cubit.checkCode(code)) {
+                            Navigator.pushReplacementNamed(context, Routes.changePassword);
+                          }
+                        }
+                      },
                     ),
                     SizedBox(height: 2.h),
                     Text(
@@ -137,11 +139,8 @@ class _ActiveCodeViewState extends State<ActiveCodeView> {
                         LangButton(
                           lang: AppStrings.next.tr(context),
                           onTap: () {
-                            String code = cubit.activeFirstPassController.text +
-                                cubit.activeSecondPassController.text +
-                                cubit.activeThirdPassController.text +
-                                cubit.activeFourthPassController.text;
-                            if (cubit.activeCodeKey.currentState!.validate()) {
+                            String code = cubit.activeCodeController.text;
+                            if (activeCodeKey.currentState!.validate()) {
                               if (cubit.checkCode(code)) {
                                 Navigator.pushReplacementNamed(context, Routes.changePassword);
                               }

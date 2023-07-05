@@ -185,6 +185,7 @@ class ConfirmProductOrder extends StatelessWidget {
                                             .then(
                                           (value) {
                                             Navigator.pushNamed(context, Routes.successOrder);
+                                            cubit.clearProductOrderData();
                                           },
                                         );
                                       },

@@ -1,7 +1,10 @@
+import 'package:china_omda/presentation/global_widget/omda_otp_text_field.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class ConfirmCodeView extends StatelessWidget {
-  const ConfirmCodeView({super.key});
+  final GlobalKey<FormState> confirmKey = GlobalKey<FormState>();
+
+  ConfirmCodeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,17 +57,25 @@ class ConfirmCodeView extends StatelessWidget {
                   ),
                   SizedBox(height: 3.h),
                   Form(
-                    key: cubit.confirmKey,
-                    child: Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: AccessCodeWidget(
-                        controllers: [
-                          cubit.confirmFirstPassController,
-                          cubit.confirmSecondPassController,
-                          cubit.confirmThirdPassController,
-                          cubit.confirmFourthPassController,
-                        ],
-                      ),
+                    key: confirmKey,
+                    child: OmdaOtp(
+                      onSubmit: (value) {
+                        cubit.confirmCodeController.text = value;
+                        String password = cubit.regPassController.text;
+                        String code = cubit.confirmCodeController.text;
+                        if (confirmKey.currentState!.validate()) {
+                          if (cubit.checkCode(code)) {
+                            cubit.createUser(
+                              phone: cubit.regPhoneController.text,
+                              password: password,
+                              country: cubit.regCountryController.text,
+                              email: cubit.regEmailController.text,
+                              name: cubit.regNameController.text,
+                              accountType: cubit.accountType!,
+                            );
+                          }
+                        }
+                      },
                     ),
                   ),
                   SizedBox(height: 3.h),
@@ -76,20 +87,20 @@ class ConfirmCodeView extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(height: 2.h),
-                  Text(
-                    AppStrings.confirmationEmail.tr(context),
-                    style: TextStyle(
-                      fontSize: 10.sp,
-                      color: ColorManager.primaryGreen,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  SizedBox(height: 2.h),
-                  const GlobalTextFormField(
-                    textInputType: TextInputType.emailAddress,
-                    // textController: cubit.emailController,
-                  ),
+                  // SizedBox(height: 2.h),
+                  // Text(
+                  //   AppStrings.confirmationEmail.tr(context),
+                  //   style: TextStyle(
+                  //     fontSize: 10.sp,
+                  //     color: ColorManager.primaryGreen,
+                  //     fontWeight: FontWeight.w700,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 2.h),
+                  // const GlobalTextFormField(
+                  //   textInputType: TextInputType.emailAddress,
+                  //   // textController: cubit.emailController,
+                  // ),
                   SizedBox(height: 6.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,15 +108,9 @@ class ConfirmCodeView extends StatelessWidget {
                       LangButton(
                         lang: AppStrings.next.tr(context),
                         onTap: () {
-                          String password = cubit.regFirstPassController.text +
-                              cubit.regSecondPassController.text +
-                              cubit.regThirdPassController.text +
-                              cubit.regFourthPassController.text;
-                          String code = cubit.confirmFirstPassController.text +
-                              cubit.confirmSecondPassController.text +
-                              cubit.confirmThirdPassController.text +
-                              cubit.confirmFourthPassController.text;
-                          if (cubit.confirmKey.currentState!.validate()) {
+                          String password = cubit.regPassController.text;
+                          String code = cubit.confirmCodeController.text;
+                          if (confirmKey.currentState!.validate()) {
                             if (cubit.checkCode(code)) {
                               cubit.createUser(
                                 phone: cubit.regPhoneController.text,
