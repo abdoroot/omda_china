@@ -7,10 +7,12 @@ class GlobalButton extends StatelessWidget {
   final Color colorText;
   final double height;
   final double width;
+  final double? raduis;
 
   const GlobalButton({
     super.key,
     this.onPressed,
+    this.raduis,
     required this.text,
     required this.color,
     required this.height,
@@ -27,7 +29,7 @@ class GlobalButton extends StatelessWidget {
         onPressed: onPressed ?? () {},
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(raduis ?? 18),
           ),
           backgroundColor: color,
         ),

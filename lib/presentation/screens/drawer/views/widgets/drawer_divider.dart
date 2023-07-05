@@ -5,9 +5,16 @@ import 'package:sizer/sizer.dart';
 
 class DrawerDivider extends StatelessWidget {
   final String dividerText;
+  final double? fontSize;
+  final Color? color;
+  final Color? colorText;
+
   const DrawerDivider({
     super.key,
     required this.dividerText,
+    this.color,
+    this.colorText,
+    this.fontSize,
   });
 
   @override
@@ -20,12 +27,12 @@ class DrawerDivider extends StatelessWidget {
           color: ColorManager.primary,
         ),
         Container(
-          color: ColorManager.secondary,
+          color: color ?? ColorManager.secondary,
           padding: EdgeInsets.symmetric(horizontal: 2.w),
           child: Text(
             dividerText.tr(context),
             style: TextStyle(
-              color: ColorManager.primary,
+              color: colorText ?? ColorManager.primary,
             ),
           ),
         ),

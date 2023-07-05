@@ -12,6 +12,7 @@ class OmdaTextFormFiled extends StatelessWidget {
   final double? height;
   final double? width;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final Function(String)? onFieldSubmitted;
   final String? Function(String?)? validator;
 
@@ -26,6 +27,7 @@ class OmdaTextFormFiled extends StatelessWidget {
     this.width,
     this.onFieldSubmitted,
     this.validator,
+    this.prefixIcon,
     required this.lableText,
   });
 
@@ -50,6 +52,7 @@ class OmdaTextFormFiled extends StatelessWidget {
             borderSide: BorderSide(color: ColorManager.primary),
           ),
           suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
           floatingLabelAlignment: FloatingLabelAlignment.center,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           label: Text(

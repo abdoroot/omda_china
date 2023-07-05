@@ -186,6 +186,25 @@
     "admin" : "Admin Account",
     "control_panel" : "Control Panel",
     "users" : "Users",
-    "settings" : "Settings"
+    "settings" : "Settings",
+    "events":"Events",
+    "holidays":"Holidays",
+    "banners" : "Banners",
+    "constants":"Constants",
+    "foreign_chats" : "Foreign correspondence",
+    "payment_gateways":"Payment gateways",
+    "profits_and_losses":"Profits and losses",
+    "entered_events":"Entered events",
+    "number_of_events" : "Number of events",
+    "start_date":"Start date",
+    "title" : "Title",
+    "details":"Details",
+    "title_en" : "Title - En",
+    "title_ar" : "Title - Ar",
+    "details_en":"Details - En",
+    "details_ar":"Details - Ar",
+    "status":"Status",
+    "add_event" : "Presentation and modification of the event"
+
    
 }   
