@@ -17,17 +17,17 @@ class _SplashViewState extends State<SplashView> {
 
   _goNext() {
     uId = CachHelper.getData(key: 'uId');
+    var accountType = CachHelper.getData(key: 'accountType');
+
     debugPrint(uId);
-    uId == null
-        ? Navigator.pushReplacementNamed(context, Routes.loginRoute)
-        : Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) {
-                return const BottomNavBarView();
-              },
-            ),
-            (route) => false,
-          );
+    if (uId == null) {
+      Navigator.pushReplacementNamed(context, Routes.loginRoute);
+    } else {
+      if (accountType != 'admin') {
+        Navigator.pushReplacementNamed(context, Routes.bottomNav);
+      }
+      Navigator.pushReplacementNamed(context, Routes.adminPanel);
+    }
   }
 
   @override

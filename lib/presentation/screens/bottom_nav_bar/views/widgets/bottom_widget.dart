@@ -4,12 +4,14 @@ class BottomWidget extends StatelessWidget {
   final Widget? circleButton;
   final Color? buttonColor;
   final Color? buttonTextColor;
+  final bool? isAdmin;
 
   const BottomWidget({
     super.key,
     this.circleButton,
     this.buttonColor,
     this.buttonTextColor,
+    this.isAdmin = false,
   });
 
   @override
@@ -77,10 +79,12 @@ class BottomWidget extends StatelessWidget {
                               top: 1.h,
                               child: circleButton ??
                                   CircleButton(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, Routes.newOrders);
-                                      AddOrdersCubit.get(context).generateOrderId();
-                                    },
+                                    onTap: isAdmin!
+                                        ? () {}
+                                        : () {
+                                            Navigator.pushNamed(context, Routes.newOrders);
+                                            AddOrdersCubit.get(context).generateOrderId();
+                                          },
                                     buttonWidget: Text(
                                       AppStrings.newOrder.tr(context),
                                       textAlign: TextAlign.center,

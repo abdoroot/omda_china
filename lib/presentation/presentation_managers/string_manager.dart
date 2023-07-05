@@ -183,4 +183,6 @@ class AppStrings {
   static const String preview1 = "preview_1";
   static const String preview2 = "preview_2";
   static const String emptyField = "empty_field";
+  static const String adminAccount = "admin";
+  static const String controlPanel = "control_panel";
 }

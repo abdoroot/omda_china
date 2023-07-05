@@ -14,8 +14,13 @@ class LoginView extends StatelessWidget {
         if (state is AuthLoginSuccessState) {
           uId = state.uId;
           CachHelper.saveData(key: 'uId', value: state.uId);
+          CachHelper.saveData(key: 'accountType', value: state.accountType);
           cubit.clearLoginText();
-          Navigator.pushReplacementNamed(context, Routes.bottomNav);
+          if (state.accountType != 'admin') {
+            Navigator.pushReplacementNamed(context, Routes.bottomNav);
+          } else {
+            Navigator.pushReplacementNamed(context, Routes.adminPanel);
+          }
         }
       },
       builder: (context, state) {
