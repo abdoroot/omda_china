@@ -199,7 +199,9 @@ class ControlPanelView extends StatelessWidget {
                             text: AppStrings.events.tr(context),
                           ),
                           SettingsItem(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, Routes.holidayView);
+                            },
                             image: 'assets/images/holiday.png',
                             text: AppStrings.holidays.tr(context),
                           ),

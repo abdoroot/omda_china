@@ -1,8 +1,10 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/add_new_orders/views/widgets/success_oreder.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/add_events.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/add_holidays.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/admin_panel_view.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/events_view.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/holidays_view.dart';
 
 class Routes {
   static const String splashRoute = '/';
@@ -24,6 +26,8 @@ class Routes {
   static const String adminPanel = '/adminPanel';
   static const String eventView = '/eventView';
   static const String addEvent = '/addEvent';
+  static const String holidayView = '/holidayView';
+  static const String addHoliday = '/addHoliday';
 }
 
 class RoutesGenerator {
@@ -61,6 +65,10 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const EventsView());
       case Routes.addEvent:
         return MaterialPageRoute(builder: (_) => AddEvents());
+      case Routes.holidayView:
+        return MaterialPageRoute(builder: (_) => const HolidaysView());
+      case Routes.addHoliday:
+        return MaterialPageRoute(builder: (_) => AddHolidays());
 
       default:
         return unDefinedRoute();
