@@ -205,5 +205,7 @@ class AppStrings {
   static const String titleAr = "title_ar";
   static const String detailsEn = "details_en";
   static const String detailsAr = "details_ar";
+  static const String active = "active";
+  static const String inActive = "in_active";
 
 }

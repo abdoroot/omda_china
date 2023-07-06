@@ -15,6 +15,7 @@ class AdminCubit extends Cubit<AdminState> {
   TextEditingController detailsEn = TextEditingController();
   bool? eventStatus;
 
+  List<String> statusValues = [AppStrings.active, AppStrings.inActive];
   void changeEventStatus(value) {
     eventStatus = value;
     emit(AdminSelecteEventStatus());
@@ -58,5 +59,67 @@ class AdminCubit extends Cubit<AdminState> {
     detailsAr.clear();
     detailsEn.clear();
     eventStatus = null;
+  }
+
+  Stream<List<EventModel>> getAllEvent() {
+    return firestore
+        .collection('events')
+        .snapshots()
+        .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
+  }
+
+  Stream<List<EventModel>> getAllActiveEvent() {
+    return firestore
+        .collection('events')
+        .where('status', isEqualTo: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
+  }
+
+  Stream<List<EventModel>> getAllInActiveEvent() {
+    return firestore
+        .collection('events')
+        .where('status', isEqualTo: false)
+        .snapshots()
+        .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
+  }
+
+  TextEditingController modifyStartDate = TextEditingController();
+  TextEditingController modifyTitleAr = TextEditingController();
+  TextEditingController modifyTitleEn = TextEditingController();
+  TextEditingController modifyDetailsAr = TextEditingController();
+  TextEditingController modifyDetailsEn = TextEditingController();
+  bool? modifyEventStatus;
+
+  void changeModifyEventStatus(value) {
+    modifyEventStatus = value;
+  }
+
+  Future<void> modifyEvent({
+    required String titleAr,
+    required String titleEn,
+    required bool status,
+    required String detailsAr,
+    required String detailsEn,
+    required String startDate,
+    required String eventId,
+  }) async {
+    await firestore
+        .collection('events')
+        .doc(eventId)
+        .update(
+          EventModel(
+            titleAr: titleAr,
+            titleEn: titleEn,
+            status: status,
+            id: eventId,
+            detailsAr: detailsAr,
+            detailsEn: detailsEn,
+            startDate: startDate,
+          ).toMap(),
+        )
+        .then((value) {
+      emit(AdminModifyEventSuccess());
+    });
   }
 }

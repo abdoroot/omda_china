@@ -204,7 +204,9 @@
     "details_en":"Details - En",
     "details_ar":"Details - Ar",
     "status":"Status",
-    "add_event" : "Presentation and modification of the event"
+    "add_event" : "Presentation and modification of the event",
+    "active" : "Active",
+    "in_active":"Inactive"
 
    
 }   

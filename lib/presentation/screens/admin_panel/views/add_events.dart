@@ -1,6 +1,7 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.dart';
 import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
+import 'package:jiffy/jiffy.dart';
 
 class AddEvents extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -34,15 +35,27 @@ class AddEvents extends StatelessWidget {
                         children: [
                           SizedBox(height: 2.h),
                           OmdaTextFormFiled(
-                            enabled: true,
-                            lableText: AppStrings.startDate,
-                            controller: cubit.startDate,
-                            prefixIcon: Icon(
-                              Icons.calendar_month,
-                              color: ColorManager.black,
-                              size: 22.sp,
-                            ),
-                          ),
+                              enabled: true,
+                              lableText: AppStrings.startDate,
+                              controller: cubit.startDate,
+                              prefixIcon: IconButton(
+                                onPressed: () async {
+                                  DateTime? selectedDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2100),
+                                  );
+                                  cubit.startDate.text =
+                                      Jiffy.parse('$selectedDate').format(pattern: 'dd/MM/yyyy');
+                                  print(selectedDate);
+                                },
+                                icon: Icon(
+                                  Icons.calendar_month,
+                                  color: ColorManager.black,
+                                  size: 22.sp,
+                                ),
+                              )),
                           SizedBox(height: 3.h),
                           OmdaTextFormFiled(
                             enabled: true,
@@ -69,9 +82,13 @@ class AddEvents extends StatelessWidget {
                           ),
                           SizedBox(height: 3.h),
                           GlobalDropDownButton(
-                            items: [],
+                            items: cubit.statusValues,
                             onChanged: (value) {
-                              cubit.changeEventStatus(value);
+                              if (value == AppStrings.active) {
+                                cubit.changeEventStatus(true);
+                              } else {
+                                cubit.changeEventStatus(false);
+                              }
                             },
                             padding: EdgeInsets.zero,
                             height: 7.h,
@@ -88,19 +105,18 @@ class AddEvents extends StatelessWidget {
                             raduis: 10,
                             onPressed: () {
                               if (formKey.currentState!.validate() &&
-                                      cubit.detailsAr.text.isNotEmpty &&
-                                      cubit.detailsEn.text.isNotEmpty
-                                  // &&
-                                  // cubit.eventStatus != null
-                                  ) {
+                                  cubit.detailsAr.text.isNotEmpty &&
+                                  cubit.detailsEn.text.isNotEmpty &&
+                                  cubit.eventStatus != null) {
                                 cubit
                                     .addEvent(
-                                        detailsAr: cubit.detailsAr.text,
-                                        detailsEn: cubit.detailsEn.text,
-                                        startDate: '06/7/2023',
-                                        status: true,
-                                        titleAr: cubit.titleAr.text,
-                                        titleEn: cubit.titleEn.text)
+                                  detailsAr: cubit.detailsAr.text,
+                                  detailsEn: cubit.detailsEn.text,
+                                  startDate: cubit.startDate.text,
+                                  status: cubit.eventStatus ?? true,
+                                  titleAr: cubit.titleAr.text,
+                                  titleEn: cubit.titleEn.text,
+                                )
                                     .then((value) {
                                   cubit.clearEventController();
                                   Navigator.pushReplacementNamed(context, Routes.adminPanel);

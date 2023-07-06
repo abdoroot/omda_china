@@ -23,7 +23,7 @@ class EventModel {
     titleEn = json['titleEn'];
     status = json['status'];
     detailsAr = json['detailsAr'];
-    detailsEn = json['details'];
+    detailsEn = json['detailsEn'];
     startDate = json['startDate'];
   }
 
