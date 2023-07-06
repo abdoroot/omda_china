@@ -44,4 +44,11 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
         .snapshots()
         .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
   }
+  Stream<List<EventModel>> getAllActiveHoliday() {
+    return firestore
+        .collection('holidays')
+        .where('status', isEqualTo: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
+  }
 }

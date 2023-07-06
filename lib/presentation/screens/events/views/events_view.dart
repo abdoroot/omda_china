@@ -33,20 +33,20 @@ class EventsView extends StatelessWidget {
                     ),
                     SizedBox(height: 1.h),
                     StreamBuilder<List<EventModel>>(
-                        stream: cubit.getAllActiveEvent(),
-                        builder: (context, snapshot) {
-                          if (snapshot.data == null) {
-                            return const SizedBox.shrink();
-                          }
-                          return ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) =>
-                                EventCard(model: snapshot.data![index]),
-                            separatorBuilder: (context, index) => SizedBox(height: 5.h),
-                            itemCount: snapshot.data!.length,
-                          );
-                        }),
+                      stream: cubit.getAllActiveEvent(),
+                      builder: (context, snapshot) {
+                        if (snapshot.data == null) {
+                          return const SizedBox.shrink();
+                        }
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) => EventCard(model: snapshot.data![index]),
+                          separatorBuilder: (context, index) => SizedBox(height: 5.h),
+                          itemCount: snapshot.data!.length,
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
