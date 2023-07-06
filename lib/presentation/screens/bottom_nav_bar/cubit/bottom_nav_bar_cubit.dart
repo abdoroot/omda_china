@@ -1,14 +1,14 @@
-import 'package:china_omda/presentation/screens/bottom_nav_bar/cubit/bottom_nav_bar_state.dart';
+import 'package:china_omda/models/events_model.dart';
+import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/china_public_holidays/views/china_public_holidays_view.dart';
 import 'package:china_omda/presentation/screens/events/views/events_view.dart';
 import 'package:china_omda/presentation/screens/home/views/home_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavBarCubit extends Cubit<BottomNavBarState> {
   BottomNavBarCubit() : super(BottomNavBarInitial());
 
   static BottomNavBarCubit get(context) => BlocProvider.of(context);
+  var firestore = FirebaseFirestore.instance;
 
   int screenIndex = 0;
 
@@ -36,4 +36,12 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
   //   CachHelper.saveData(key: 'lang', value: isEnglish);
   //   emit(ChangeAppLangState());
   // }
+
+  Stream<List<EventModel>> getAllActiveEvent() {
+    return firestore
+        .collection('events')
+        .where('status', isEqualTo: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
+  }
 }
