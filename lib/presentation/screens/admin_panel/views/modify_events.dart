@@ -131,7 +131,7 @@ class ModifyEvents extends StatelessWidget {
                                 )
                                     .then((value) {
                                   cubit.clearEventController();
-                                  Navigator.pushReplacementNamed(context, Routes.adminPanel);
+                                  Navigator.pop(context);
                                 });
                               }
                             },

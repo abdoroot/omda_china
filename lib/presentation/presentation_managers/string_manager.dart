@@ -208,5 +208,8 @@ class AppStrings {
   static const String active = "active";
   static const String inActive = "in_active";
   static const String eventStartDate = "event_start_date";
+  static const String enteredHolidays = "entered_holidays";
+  static const String numberOfHolidays = "number_of_holidays";
+  static const String addHoliday = "add_holiday";
 
 }

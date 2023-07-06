@@ -83,3 +83,8 @@ export 'package:china_omda/presentation/screens/order_details/views/documentatio
 export 'package:china_omda/presentation/screens/orders/views/invoices_view.dart';
 export 'package:china_omda/presentation/screens/orders/views/message_view.dart';
 export 'package:china_omda/presentation/screens/orders/views/widget/button_orders.dart';
+export 'package:china_omda/models/events_model.dart';
+export 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.dart';
+export 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
+export 'package:china_omda/presentation/screens/admin_panel/views/modify_holiday.dart';
+export 'package:china_omda/presentation/screens/admin_panel/widgets/events_item.dart';

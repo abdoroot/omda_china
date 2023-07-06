@@ -3,9 +3,9 @@ import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.da
 import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
 import 'package:jiffy/jiffy.dart';
 
-class AddEvents extends StatelessWidget {
+class AddHolidays extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  AddEvents({super.key});
+  AddHolidays({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class AddEvents extends StatelessWidget {
           body: Column(
             children: [
               const HeaderView(
-                headerText: AppStrings.addEvent,
+                headerText: AppStrings.addHoliday,
                 isLogin: false,
               ),
               Expanded(
@@ -37,7 +37,7 @@ class AddEvents extends StatelessWidget {
                           OmdaTextFormFiled(
                               enabled: true,
                               lableText: AppStrings.startDate,
-                              controller: cubit.startDate,
+                              controller: cubit.holidayStartDate,
                               prefixIcon: IconButton(
                                 onPressed: () async {
                                   DateTime? selectedDate = await showDatePicker(
@@ -46,7 +46,7 @@ class AddEvents extends StatelessWidget {
                                     firstDate: DateTime(2000),
                                     lastDate: DateTime(2100),
                                   );
-                                  cubit.startDate.text =
+                                  cubit.holidayStartDate.text =
                                       Jiffy.parse('$selectedDate').format(pattern: 'dd/MM/yyyy');
                                   print(selectedDate);
                                 },
@@ -60,34 +60,34 @@ class AddEvents extends StatelessWidget {
                           OmdaTextFormFiled(
                             enabled: true,
                             lableText: AppStrings.titleAr,
-                            controller: cubit.titleAr,
+                            controller: cubit.holidayTitleAr,
                           ),
                           SizedBox(height: 3.h),
                           OmdaTextFormFiled(
                             enabled: true,
                             lableText: AppStrings.titleEn,
-                            controller: cubit.titleEn,
+                            controller: cubit.holidayTitleEn,
                           ),
                           SizedBox(height: 3.h),
                           OmdaTextArea(
                             enabled: true,
                             lableText: AppStrings.detailsAr,
-                            controller: cubit.detailsAr,
+                            controller: cubit.holidayDetailsAr,
                           ),
                           SizedBox(height: 3.h),
                           OmdaTextArea(
                             enabled: true,
                             lableText: AppStrings.detailsEn,
-                            controller: cubit.detailsEn,
+                            controller: cubit.holidayDetailsEn,
                           ),
                           SizedBox(height: 3.h),
                           GlobalDropDownButton(
                             items: cubit.statusValues,
                             onChanged: (value) {
                               if (value == AppStrings.active) {
-                                cubit.changeEventStatus(true);
+                                cubit.selecteHolidayStatus(true);
                               } else {
-                                cubit.changeEventStatus(false);
+                                cubit.selecteHolidayStatus(false);
                               }
                             },
                             padding: EdgeInsets.zero,
@@ -105,17 +105,17 @@ class AddEvents extends StatelessWidget {
                             raduis: 10,
                             onPressed: () {
                               if (formKey.currentState!.validate() &&
-                                  cubit.detailsAr.text.isNotEmpty &&
-                                  cubit.detailsEn.text.isNotEmpty &&
-                                  cubit.eventStatus != null) {
+                                  cubit.holidayDetailsAr.text.isNotEmpty &&
+                                  cubit.holidayDetailsEn.text.isNotEmpty &&
+                                  cubit.holidayStatus != null) {
                                 cubit
-                                    .addEvent(
-                                  detailsAr: cubit.detailsAr.text,
-                                  detailsEn: cubit.detailsEn.text,
-                                  startDate: cubit.startDate.text,
-                                  status: cubit.eventStatus ?? true,
-                                  titleAr: cubit.titleAr.text,
-                                  titleEn: cubit.titleEn.text,
+                                    .addHoliday(
+                                  detailsAr: cubit.holidayDetailsAr.text,
+                                  detailsEn: cubit.holidayDetailsEn.text,
+                                  startDate: cubit.holidayStartDate.text,
+                                  status: cubit.holidayStatus ?? true,
+                                  titleAr: cubit.holidayTitleAr.text,
+                                  titleEn: cubit.holidayTitleEn.text,
                                 )
                                     .then((value) {
                                   cubit.clearEventController();
