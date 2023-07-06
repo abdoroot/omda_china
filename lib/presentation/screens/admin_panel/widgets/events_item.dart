@@ -24,22 +24,36 @@ class EventItem extends StatelessWidget {
             fontSize: 11.sp,
           ),
         ),
-        Text(
-          lang != 'English' ? eventModel.titleEn ?? '' : eventModel.titleAr ?? '',
-          style: TextStyle(
-            fontSize: 11.sp,
+        SizedBox(
+          width: 19.w,
+          child: Text(
+            lang != 'English' ? eventModel.titleEn ?? '' : eventModel.titleAr ?? '',
+            style: TextStyle(
+              fontSize: 11.sp,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
-        Text(
-          lang != 'English' ? eventModel.detailsEn ?? '' : eventModel.detailsAr ?? '',
-          style: TextStyle(
-            fontSize: 11.sp,
+        SizedBox(width: 1.w),
+        SizedBox(
+          width: 19.w,
+          child: Text(
+            lang != 'English' ? eventModel.detailsEn! : eventModel.detailsAr!,
+            style: TextStyle(
+              fontSize: 11.sp,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
           ),
         ),
+        SizedBox(width: 1.w),
         Text(
-          lang != 'English' ? eventModel.status.toString() : eventModel.titleAr.toString(),
+          eventModel.status! ? AppStrings.active.tr(context) : AppStrings.inActive.tr(context),
           style: TextStyle(
             fontSize: 11.sp,
+            color: eventModel.status! ? ColorManager.primaryGreen : ColorManager.red,
           ),
         ),
         GestureDetector(

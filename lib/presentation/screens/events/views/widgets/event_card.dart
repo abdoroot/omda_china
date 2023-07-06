@@ -1,11 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:china_omda/models/events_model.dart';
+import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class EventCard extends StatelessWidget {
-  const EventCard({super.key});
+  final EventModel model;
+
+  const EventCard({
+    super.key,
+    required this.model,
+  });
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppStrings.lang.tr(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: SizedBox(
@@ -20,7 +26,7 @@ class EventCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'مهرجان قوراب التنين',
+                lang == 'English' ? model.titleAr ?? '' : model.titleEn ?? '',
                 style: TextStyle(
                   fontSize: 18.sp,
                 ),
@@ -28,7 +34,7 @@ class EventCard extends StatelessWidget {
               ),
               SizedBox(height: 1.h),
               Text(
-                'تاريخ  بداية العطلة : 02/12/2023',
+                '${AppStrings.eventStartDate.tr(context)} : ${model.startDate}',
                 style: TextStyle(
                   fontSize: 14.sp,
                 ),
@@ -36,7 +42,7 @@ class EventCard extends StatelessWidget {
               ),
               SizedBox(height: 1.h),
               Text(
-                'لمدة  ثلاث ايام ويكون بالعادة من منتصف شهر يونيو',
+                lang == 'English' ? model.detailsAr ?? '' : model.detailsEn ?? '',
                 style: TextStyle(
                   fontSize: 12.sp,
                 ),

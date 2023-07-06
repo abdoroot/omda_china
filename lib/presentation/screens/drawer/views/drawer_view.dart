@@ -156,10 +156,10 @@ class DrawerView extends StatelessWidget {
                   if (isAdmin == true)
                     DrawerItem(
                       onTap: () {
-                        retrieveCountryForIP();
-                        Navigator.pushReplacementNamed(context, Routes.loginRoute);
                         CachHelper.removeData(key: 'uId');
                         CachHelper.removeData(key: 'accountType');
+                        retrieveCountryForIP();
+                        Navigator.pushReplacementNamed(context, Routes.loginRoute);
                         BottomNavBarCubit.get(context).screenIndex = 0;
                       },
                       itemText: AppStrings.logout,

@@ -2,6 +2,7 @@ import 'package:china_omda/models/events_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.dart';
 import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/modify_events.dart';
 import 'package:china_omda/presentation/screens/admin_panel/widgets/events_item.dart';
 
 class EventsView extends StatelessWidget {
@@ -13,6 +14,7 @@ class EventsView extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var lang = AppStrings.lang.tr(context);
+        AdminCubit cubit = AdminCubit.get(context);
         return Scaffold(
           drawerEnableOpenDragGesture: lang == 'English' ? false : true,
           endDrawerEnableOpenDragGesture: lang == 'English' ? true : false,
@@ -41,19 +43,29 @@ class EventsView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(
-                              AppStrings.numberOfEvents.tr(context),
-                              style: TextStyle(
-                                color: ColorManager.primaryGreen,
-                                height: 0.5,
-                              ),
+                            StreamBuilder<List<EventModel>>(
+                              stream: cubit.getAllActiveEvent(),
+                              builder: (context, snapshot) {
+                                return Text(
+                                  "${AppStrings.active.tr(context)} : ${snapshot.data == null ? 0 : snapshot.data!.length}",
+                                  style: TextStyle(
+                                    color: ColorManager.primaryGreen,
+                                    height: 0.5,
+                                  ),
+                                );
+                              },
                             ),
-                            Text(
-                              AppStrings.numberOfEvents.tr(context),
-                              style: TextStyle(
-                                color: ColorManager.red,
-                                height: 0.5,
-                              ),
+                            StreamBuilder<List<EventModel>>(
+                              stream: cubit.getAllInActiveEvent(),
+                              builder: (context, snapshot) {
+                                return Text(
+                                  "${AppStrings.inActive.tr(context)} : ${snapshot.data == null ? 0 : snapshot.data!.length}",
+                                  style: TextStyle(
+                                    color: ColorManager.red,
+                                    height: 0.5,
+                                  ),
+                                );
+                              },
                             ),
                           ],
                         ),
@@ -106,29 +118,34 @@ class EventsView extends StatelessWidget {
                             thickness: 1,
                           ),
                         ),
-                        ListView.separated(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          itemBuilder: (context, index) => EventItem(
-                            eventModel: EventModel(
-                              titleAr: 'العنوان عربي',
-                              titleEn: 'english title',
-                              status: true,
-                              id: '123',
-                              detailsAr: 'تفاصيل عربي',
-                              detailsEn: 'english details',
-                              startDate: '04/7/2023',
-                            ),
-                          ),
-                          separatorBuilder: (context, index) => Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 2.0.w),
-                            child: const Divider(
-                              thickness: 1,
-                            ),
-                          ),
-                          itemCount: 8,
-                        ),
+                        StreamBuilder<List<EventModel>>(
+                            stream: cubit.getAllEvent(),
+                            builder: (context, snapshot) {
+                              if (snapshot.data == null) {
+                                return const SizedBox();
+                              }
+                              return ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                padding: EdgeInsets.zero,
+                                itemBuilder: (context, index) => EventItem(
+                                  eventModel: snapshot.data![index],
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ModifyEvents(model: snapshot.data![index])),
+                                    );
+                                  },
+                                ),
+                                separatorBuilder: (context, index) => Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 2.0.w),
+                                  child: const Divider(thickness: 1),
+                                ),
+                                itemCount: snapshot.data!.length,
+                              );
+                            }),
                         SizedBox(height: 2.h),
                         Align(
                           alignment: Alignment.bottomLeft,
