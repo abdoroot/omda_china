@@ -1,7 +1,5 @@
-import 'package:china_omda/models/events_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/china_public_holidays/views/china_public_holidays_view.dart';
-import 'package:china_omda/presentation/screens/events/views/events_view.dart';
 import 'package:china_omda/presentation/screens/home/views/home_view.dart';
 
 class BottomNavBarCubit extends Cubit<BottomNavBarState> {
@@ -40,6 +38,13 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
   Stream<List<EventModel>> getAllActiveEvent() {
     return firestore
         .collection('events')
+        .where('status', isEqualTo: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
+  }
+  Stream<List<EventModel>> getAllActiveHoliday() {
+    return firestore
+        .collection('holidays')
         .where('status', isEqualTo: true)
         .snapshots()
         .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());

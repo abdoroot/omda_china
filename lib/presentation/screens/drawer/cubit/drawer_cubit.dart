@@ -1,4 +1,4 @@
-import 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
+import 'package:china_omda/models/constant_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class DrawerCubit extends Cubit<DrawerState> {
@@ -21,4 +21,12 @@ class DrawerCubit extends Cubit<DrawerState> {
   TextEditingController emailController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   TextEditingController accountTypeController = TextEditingController();
+
+  Stream<ConstantModel> getConstants() {
+    return firestore
+        .collection('constants')
+        .doc('const')
+        .snapshots()
+        .map((event) => ConstantModel.fromJson(event.data()!));
+  }
 }

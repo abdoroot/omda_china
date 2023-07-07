@@ -1,8 +1,4 @@
-import 'package:china_omda/app/bloc_observer.dart';
-import 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.dart';
-import 'package:china_omda/presentation/screens/orders/cubit/orders_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {

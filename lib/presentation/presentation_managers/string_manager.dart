@@ -211,5 +211,16 @@ class AppStrings {
   static const String enteredHolidays = "entered_holidays";
   static const String numberOfHolidays = "number_of_holidays";
   static const String addHoliday = "add_holiday";
+  static const String enteredBanners = "entered_banners";
+  static const String numberOfBanners = "number_of_banners";
+  static const String addBanner = "add_banner";
+  static const String endDate = "end_date";
+  static const String knowUsAr = "know_us_Ar";
+  static const String knowUsEn = "know_us_En";
+  static const String chinaGate = "china_gate";
+  static const String termsConditionsAr = "terms_conditions_ar";
+  static const String termsConditionsEn = "terms_conditions_en";
+  static const String howWorkAr = "how_work_ar";
+  static const String howWorkEn = "how_work_en";
 
 }

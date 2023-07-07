@@ -1,12 +1,14 @@
 import 'package:china_omda/app/app_lang_cach.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:china_omda/models/banner_model.dart';
+import 'package:china_omda/presentation/presentation_managers/exports.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
   static HomeCubit get(context) => BlocProvider.of(context);
+
+  var firestore = FirebaseFirestore.instance;
 
   Future<void> getSavedLanguage() async {
     final String cachedLanguageCode = await LanguageCacheHelper().getCachedLanguageCode();
@@ -23,5 +25,13 @@ class HomeCubit extends Cubit<HomeState> {
     }
     await LanguageCacheHelper().cacheLanguageCode(newLocale.languageCode);
     emit(ChangeLocaleState(newLocale));
+  }
+
+  Stream<List<BannerModel>> getAllActiveBanners() {
+    return firestore
+        .collection('banners')
+        .where('status', isEqualTo: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => BannerModel.fromJson(e.data())).toList());
   }
 }

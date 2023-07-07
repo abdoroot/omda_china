@@ -44,8 +44,14 @@
     "main_menu" : "Main Menu",
     "main" : "Main" ,
     "know_us":"Know us more",
+    "know_us_Ar":"Know us more - Ar",
+    "know_us_En":"Know us more - En",
     "terms_conditions":"Terms and Conditions",
+    "terms_conditions_ar":"Terms and Conditions - Ar",
+    "terms_conditions_en":"Terms and Conditions - En",
     "how_work":"How do we work",
+    "how_work_ar":"How do we work - Ar",
+    "how_work_en":"How do we work - En",
     "connect_us" : "Connect with us",
     "chinese_portals":"Chinese portals",
     "my_account" : "My Account",
@@ -196,9 +202,12 @@
     "profits_and_losses":"Profits and losses",
     "entered_events":"Entered events",
     "entered_holidays":"Entered holidays",
+    "entered_banners":"Entered banners",
+    "number_of_banners" : "Number of banners",
     "number_of_events" : "Number of events",
     "number_of_holidays" : "Number of holidays",
     "start_date":"Start date",
+    "end_date":"End date",
     "title" : "Title",
     "details":"Details",
     "title_en" : "Title - En",
@@ -208,9 +217,11 @@
     "status":"Status",
     "add_event" : "Presentation and modification of the event",
     "add_holiday" : "Presentation and modification of the holiday",
+    "add_banner" : "Presentation and modification of the banner",
     "active" : "Active",
     "in_active":"Inactive",
-    "event_start_date" : "The start date of the event"
+    "event_start_date" : "The start date of the event",
+    "china_gate":"Chinese portals application link"
 
    
 }   

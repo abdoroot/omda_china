@@ -1,4 +1,3 @@
-import 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class SplashView extends StatefulWidget {
@@ -25,8 +24,10 @@ class _SplashViewState extends State<SplashView> {
     } else {
       if (accountType != 'admin') {
         Navigator.pushReplacementNamed(context, Routes.bottomNav);
-      }
+      }else{
+
       Navigator.pushReplacementNamed(context, Routes.adminPanel);
+      }
     }
   }
 

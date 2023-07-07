@@ -1,6 +1,4 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.dart';
-import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
 import 'package:china_omda/presentation/screens/admin_panel/widgets/control_panel.dart';
 
 class AdminPanelView extends StatelessWidget {

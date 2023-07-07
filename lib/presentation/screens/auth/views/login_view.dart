@@ -1,5 +1,4 @@
 import 'package:china_omda/presentation/global_widget/omda_otp_text_field.dart';
-import 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class LoginView extends StatelessWidget {
@@ -15,6 +14,8 @@ class LoginView extends StatelessWidget {
           uId = state.uId;
           CachHelper.saveData(key: 'uId', value: state.uId);
           CachHelper.saveData(key: 'accountType', value: state.accountType);
+          String i = CachHelper.getData(key: 'accountType');
+          print(i);
           cubit.clearLoginText();
           if (state.accountType != 'admin') {
             Navigator.pushReplacementNamed(context, Routes.bottomNav);
