@@ -45,8 +45,14 @@
    "main_menu" : "القائمة الرئيسية",
    "main" : "الرئيسية",
    "know_us":"اعرفنا أكثر",
+   "know_us_Ar":"اعرفنا اكثر - Ar",
+   "know_us_En":"اعرفنا اكثر - En",
    "terms_conditions":"الشروط والأحكام",
+   "terms_conditions_ar":"الشروط والاحكام - Ar",
+   "terms_conditions_en":"الشروط والاحكام - En",
    "how_work":"كيف  نعمل",
+   "how_work_ar":"كيف نعمل - Ar",
+   "how_work_en":"كيف نعمل - En",
    "connect_us" : "تواصل معنا",
    "chinese_portals":"بوابات صينية",
    "my_account" : "حسابي",
@@ -199,6 +205,9 @@
    "entered_holidays":"العطل المدخلة",
    "number_of_holidays" : "عدد العطل",
    "add_holiday" : "العرض والتعديل على العطل",
+   "entered_banners":"البنرات المدخلة",
+   "number_of_banners" : "عدد البنرات",
+
    "number_of_events" : "عدد الفعاليات ",
    "start_date":"تاريخ البداية",
    "title" : "العنوان",
@@ -209,9 +218,13 @@
    "details_ar":"التفاصيل - عربي",
    "status":"الحالة",
    "add_event" : "العرض والتعديل على الفعالية",
+   "add_banner" : "العرض والتعديل على البنرات",
+   "end_date":"تاريخ النهاية",
    "active" : "فعال",
    "in_active":"غير فعال",
-   "event_start_date" : "تاريخ بداية الفعالية"
+   "event_start_date" : "تاريخ بداية الفعالية",
+   "china_gate":"رابط تطبيق بوابات صينية"
+
 
 
 

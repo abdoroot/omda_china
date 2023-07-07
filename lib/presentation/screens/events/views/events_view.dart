@@ -1,4 +1,3 @@
-import 'package:china_omda/models/events_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/events/views/widgets/event_card.dart';
 

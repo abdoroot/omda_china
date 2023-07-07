@@ -1,11 +1,13 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.dart';
-import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
 import 'package:jiffy/jiffy.dart';
 
-class AddHolidays extends StatelessWidget {
+class ModifyHolidays extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  AddHolidays({super.key});
+  final EventModel model;
+  ModifyHolidays({
+    super.key,
+    required this.model,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,12 @@ class AddHolidays extends StatelessWidget {
       builder: (context, state) {
         var lang = AppStrings.lang.tr(context);
         AdminCubit cubit = AdminCubit.get(context);
+        cubit.modifyHolidayDetailsAr.text = model.detailsAr ?? '';
+        cubit.modifyHolidayDetailsEn.text = model.detailsEn ?? '';
+        cubit.modifyHolidayTitleAr.text = model.titleAr ?? '';
+        cubit.modifyHolidayTitleEn.text = model.titleEn ?? '';
+        cubit.modifyHolidayStatus = model.status;
+        cubit.modifyHolidayStartDate.text = model.startDate ?? '';
         return Scaffold(
           drawerEnableOpenDragGesture: lang == 'English' ? false : true,
           endDrawerEnableOpenDragGesture: lang == 'English' ? true : false,
@@ -37,7 +45,7 @@ class AddHolidays extends StatelessWidget {
                           OmdaTextFormFiled(
                               enabled: true,
                               lableText: AppStrings.startDate,
-                              controller: cubit.holidayStartDate,
+                              controller: cubit.modifyHolidayStartDate,
                               prefixIcon: IconButton(
                                 onPressed: () async {
                                   DateTime? selectedDate = await showDatePicker(
@@ -46,9 +54,8 @@ class AddHolidays extends StatelessWidget {
                                     firstDate: DateTime(2000),
                                     lastDate: DateTime(2100),
                                   );
-                                  cubit.holidayStartDate.text =
+                                  cubit.modifyHolidayStartDate.text =
                                       Jiffy.parse('$selectedDate').format(pattern: 'dd/MM/yyyy');
-                                  print(selectedDate);
                                 },
                                 icon: Icon(
                                   Icons.calendar_month,
@@ -60,40 +67,42 @@ class AddHolidays extends StatelessWidget {
                           OmdaTextFormFiled(
                             enabled: true,
                             lableText: AppStrings.titleAr,
-                            controller: cubit.holidayTitleAr,
+                            controller: cubit.modifyHolidayTitleAr,
                           ),
                           SizedBox(height: 3.h),
                           OmdaTextFormFiled(
                             enabled: true,
                             lableText: AppStrings.titleEn,
-                            controller: cubit.holidayTitleEn,
+                            controller: cubit.modifyHolidayTitleEn,
                           ),
                           SizedBox(height: 3.h),
                           OmdaTextArea(
                             enabled: true,
                             lableText: AppStrings.detailsAr,
-                            controller: cubit.holidayDetailsAr,
+                            controller: cubit.modifyHolidayDetailsAr,
                           ),
                           SizedBox(height: 3.h),
                           OmdaTextArea(
                             enabled: true,
                             lableText: AppStrings.detailsEn,
-                            controller: cubit.holidayDetailsEn,
+                            controller: cubit.modifyHolidayDetailsEn,
                           ),
                           SizedBox(height: 3.h),
                           GlobalDropDownButton(
                             items: cubit.statusValues,
                             onChanged: (value) {
                               if (value == AppStrings.active) {
-                                cubit.selecteHolidayStatus(true);
+                                cubit.changeModifyHolidayStatus(true);
                               } else {
-                                cubit.selecteHolidayStatus(false);
+                                cubit.changeModifyHolidayStatus(false);
                               }
                             },
                             padding: EdgeInsets.zero,
                             height: 7.h,
                             lableText: AppStrings.status.tr(context),
-                            value: null,
+                            value: cubit.modifyHolidayStatus!
+                                ? AppStrings.active
+                                : AppStrings.inActive,
                           ),
                           SizedBox(height: 3.h),
                           GlobalButton(
@@ -105,20 +114,21 @@ class AddHolidays extends StatelessWidget {
                             raduis: 10,
                             onPressed: () {
                               if (formKey.currentState!.validate() &&
-                                  cubit.holidayDetailsAr.text.isNotEmpty &&
-                                  cubit.holidayDetailsEn.text.isNotEmpty &&
-                                  cubit.holidayStatus != null) {
+                                  cubit.modifyHolidayDetailsAr.text.isNotEmpty &&
+                                  cubit.modifyHolidayDetailsEn.text.isNotEmpty &&
+                                  cubit.modifyHolidayStatus != null) {
                                 cubit
-                                    .addHoliday(
-                                  detailsAr: cubit.holidayDetailsAr.text,
-                                  detailsEn: cubit.holidayDetailsEn.text,
-                                  startDate: cubit.holidayStartDate.text,
-                                  status: cubit.holidayStatus ?? true,
-                                  titleAr: cubit.holidayTitleAr.text,
-                                  titleEn: cubit.holidayTitleEn.text,
+                                    .modifyHoliday(
+                                  detailsAr: cubit.modifyHolidayDetailsAr.text,
+                                  detailsEn: cubit.modifyHolidayDetailsEn.text,
+                                  startDate: cubit.modifyHolidayStartDate.text,
+                                  status: cubit.modifyHolidayStatus!,
+                                  titleAr: cubit.modifyHolidayTitleAr.text,
+                                  titleEn: cubit.modifyHolidayTitleEn.text,
+                                  eventId: model.id ?? '',
                                 )
                                     .then((value) {
-                                  cubit.clearEventController();
+                                  cubit.clearHolidayController();
                                   Navigator.pop(context);
                                 });
                               }

@@ -1,6 +1,4 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.dart';
-import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
 import 'package:jiffy/jiffy.dart';
 
 class AddEvents extends StatelessWidget {

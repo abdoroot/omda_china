@@ -1,6 +1,9 @@
-import 'package:china_omda/models/events_model.dart';
+import 'dart:io';
+import 'package:china_omda/models/banner_model.dart';
+import 'package:china_omda/models/constant_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AdminCubit extends Cubit<AdminState> {
   AdminCubit() : super(AdminInitial());
@@ -242,5 +245,246 @@ class AdminCubit extends Cubit<AdminState> {
     }).catchError((e) {
       emit(AdminModifyHolidayError());
     });
+  }
+
+  // add banners
+
+  TextEditingController bannerStartDate = TextEditingController();
+  TextEditingController bannerEndDate = TextEditingController();
+  bool? bannerStatus;
+
+  void selecteBannerStatus(value) {
+    bannerStatus = value;
+    emit(AdminSelecteBannerStatus());
+  }
+
+  File? bannerImage;
+
+  Future<void> addBannerImage() async {
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    bannerImage = File(image!.path);
+    emit(AdminPickBannerImage());
+  }
+
+  Future<void> addBanner({
+    required File image,
+    required String endDate,
+    required bool status,
+    required String startDate,
+  }) async {
+    var bannerId = await generateUniqueId();
+    await FirebaseStorage.instance
+        .ref()
+        .child('banners_image/${Uri.file(image.path).pathSegments.last}')
+        .putFile(image)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) async {
+        await firestore
+            .collection('banners')
+            .doc(bannerId)
+            .set(
+              BannerModel(
+                status: status,
+                id: bannerId,
+                endDate: endDate,
+                image: value,
+                startDate: startDate,
+              ).toMap(),
+            )
+            .then((value) {
+          emit(AdminAddBannerSuccess());
+        }).catchError((e) {
+          debugPrint(e.toString());
+          emit(AdminAddBannerError());
+        });
+      });
+    });
+  }
+
+  void clearBannerController() {
+    bannerStartDate.clear();
+    bannerEndDate.clear();
+    bannerStatus = null;
+    bannerImage = null;
+  }
+
+  Stream<List<BannerModel>> getAllBanners() {
+    return firestore
+        .collection('banners')
+        .snapshots()
+        .map((event) => event.docs.map((e) => BannerModel.fromJson(e.data())).toList());
+  }
+
+  Stream<List<BannerModel>> getAllActiveBanners() {
+    return firestore
+        .collection('banners')
+        .where('status', isEqualTo: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => BannerModel.fromJson(e.data())).toList());
+  }
+
+  Stream<List<BannerModel>> getAllInActiveBanners() {
+    return firestore
+        .collection('banners')
+        .where('status', isEqualTo: false)
+        .snapshots()
+        .map((event) => event.docs.map((e) => BannerModel.fromJson(e.data())).toList());
+  }
+
+  TextEditingController modifyBannerStartDate = TextEditingController();
+  TextEditingController modifyBannerEndDate = TextEditingController();
+  bool? modifyBannerStatus;
+
+  void selecteModfidyBannerStatus(value) {
+    modifyBannerStatus = value;
+  }
+
+  File? modifyBannerImage;
+
+  Future<void> modifyBannersImage() async {
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    modifyBannerImage = File(image!.path);
+    emit(AdminPickBannerImage());
+  }
+
+  Future<void> modifyBanner({
+    File? image,
+    required String endDate,
+    required bool status,
+    required String startDate,
+    required String bannerId,
+  }) async {
+    if (image != null) {
+      await FirebaseStorage.instance
+          .ref()
+          .child('banners_image/${Uri.file(image.path).pathSegments.last}')
+          .putFile(image)
+          .then((value) {
+        value.ref.getDownloadURL().then((value) async {
+          await firestore
+              .collection('banners')
+              .doc(bannerId)
+              .update(
+                BannerModel(
+                  status: status,
+                  id: bannerId,
+                  endDate: endDate,
+                  image: value,
+                  startDate: startDate,
+                ).toMap(),
+              )
+              .then((value) {
+            emit(AdminModifyBannerSuccess());
+          }).catchError((e) {
+            debugPrint(e.toString());
+            emit(AdminModifyBannerError());
+          });
+        });
+      });
+    } else {
+      await firestore
+          .collection('banners')
+          .doc(bannerId)
+          .update(
+            BannerModel(
+              status: status,
+              id: bannerId,
+              endDate: endDate,
+              startDate: startDate,
+            ).toMap(),
+          )
+          .then((value) {
+        emit(AdminModifyBannerSuccess());
+      }).catchError((e) {
+        debugPrint(e.toString());
+        emit(AdminModifyBannerError());
+      });
+    }
+  }
+
+  // add Constants
+
+  TextEditingController chinaGateController = TextEditingController();
+  TextEditingController knowUsArController = TextEditingController();
+  TextEditingController knowUsEnController = TextEditingController();
+  TextEditingController tirmsArController = TextEditingController();
+  TextEditingController tirmsEnController = TextEditingController();
+  TextEditingController howWorkArController = TextEditingController();
+  TextEditingController howWorkEnController = TextEditingController();
+
+  Future<void> addConstants({
+    required String chinaGateUrl,
+    required String knowUsAr,
+    required String knowUsEn,
+    required String knowHowWorkAr,
+    required String knowHowWorkEn,
+    required String termsAndConditionsAr,
+    required String termsAndConditionsEn,
+  }) async {
+    await firestore
+        .collection('constants')
+        .doc('const')
+        .set(ConstantModel(
+          chinaGateUrl: 'https://$chinaGateUrl',
+          knowUsAr: knowUsAr,
+          knowUsEn: knowUsEn,
+          knowHowWorkAr: knowHowWorkAr,
+          knowHowWorkEn: knowHowWorkEn,
+          termsAndConditionsAr: termsAndConditionsAr,
+          termsAndConditionsEn: termsAndConditionsEn,
+        ).toMap())
+        .then((value) {
+      emit(AdminAddConstantsSuccess());
+    }).catchError((e) {
+      debugPrint(e.toString());
+      emit(AdminAddConstantsError());
+    });
+  }
+
+  Future<void> updateConstants({
+    required String chinaGateUrl,
+    required String knowUsAr,
+    required String knowUsEn,
+    required String knowHowWorkAr,
+    required String knowHowWorkEn,
+    required String termsAndConditionsAr,
+    required String termsAndConditionsEn,
+  }) async {
+    await firestore
+        .collection('constants')
+        .doc('const')
+        .update(ConstantModel(
+          chinaGateUrl: 'https://$chinaGateUrl',
+          knowUsAr: knowUsAr,
+          knowUsEn: knowUsEn,
+          knowHowWorkAr: knowHowWorkAr,
+          knowHowWorkEn: knowHowWorkEn,
+          termsAndConditionsAr: termsAndConditionsAr,
+          termsAndConditionsEn: termsAndConditionsEn,
+        ).toMap())
+        .then((value) {
+      emit(AdminAddConstantsSuccess());
+    }).catchError((e) {
+      debugPrint(e.toString());
+      emit(AdminAddConstantsError());
+    });
+  }
+
+  void clearConstantsController() {
+    chinaGateController.clear();
+    knowUsArController.clear();
+    knowUsEnController.clear();
+    tirmsArController.clear();
+    tirmsEnController.clear();
+    howWorkArController.clear();
+    howWorkEnController.clear();
+  }
+
+  Stream<ConstantModel> getConstants() {
+    return firestore
+        .collection('constants')
+        .doc('const')
+        .snapshots()
+        .map((event) => ConstantModel.fromJson(event.data()!));
   }
 }

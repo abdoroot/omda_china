@@ -1,5 +1,5 @@
+import 'package:china_omda/models/banner_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/orders/cubit/orders_cubit.dart';
 import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
 
 class MyDashboardView extends StatelessWidget {
@@ -233,11 +233,17 @@ class MyDashboardView extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         height: 18.h,
-                        child: const Image(
-                          image: NetworkImage(
-                              'https://img.freepik.com/premium-vector/landing-page-laptop-information-website-banner-message-vector_3482-7061.jpg?size=626&ext=jpg&ga=GA1.2.1666381349.1685955061&semt=robertav1_2_sidr'),
-                          fit: BoxFit.cover,
-                        ),
+                        child: StreamBuilder<List<BannerModel>>(
+                            stream: HomeCubit.get(context).getAllActiveBanners(),
+                            builder: (context, snapshot) {
+                              if (snapshot.data == null) {
+                                return const SizedBox();
+                              }
+                              return Image(
+                                image: NetworkImage(snapshot.data!.first.image!),
+                                fit: BoxFit.cover,
+                              );
+                            }),
                       ),
                       SizedBox(
                         height: 3.h,

@@ -86,5 +86,15 @@ export 'package:china_omda/presentation/screens/orders/views/widget/button_order
 export 'package:china_omda/models/events_model.dart';
 export 'package:china_omda/presentation/screens/admin_panel/cubit/admin_cubit.dart';
 export 'package:china_omda/presentation/screens/admin_panel/cubit/admin_state.dart';
-export 'package:china_omda/presentation/screens/admin_panel/views/modify_holiday.dart';
+export 'package:china_omda/presentation/screens/admin_panel/views/holidays/modify_holiday.dart';
 export 'package:china_omda/presentation/screens/admin_panel/widgets/events_item.dart';
+export 'package:china_omda/presentation/screens/add_new_orders/views/widgets/success_oreder.dart';
+export 'package:china_omda/presentation/screens/admin_panel/views/events/add_events.dart';
+export 'package:china_omda/presentation/screens/admin_panel/views/holidays/add_holidays.dart';
+export 'package:china_omda/presentation/screens/admin_panel/views/admin_panel_view.dart';
+export 'package:china_omda/presentation/screens/admin_panel/views/events/events_view.dart';
+export 'package:china_omda/presentation/screens/admin_panel/views/holidays/holidays_view.dart';
+export 'package:china_omda/presentation/screens/admin_panel/views/events/modify_events.dart';
+export 'package:china_omda/app/bloc_observer.dart';
+export 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
+export 'package:china_omda/presentation/screens/orders/cubit/orders_cubit.dart';
