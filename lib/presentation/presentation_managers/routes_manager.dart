@@ -3,6 +3,7 @@ import 'package:china_omda/presentation/screens/admin_panel/views/banners/add_ba
 import 'package:china_omda/presentation/screens/admin_panel/views/banners/banners_view.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/constants/add_constants.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/external_chats/external_chat_view.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/payment_gates/payment_gates_view.dart';
 
 class Routes {
   static const String splashRoute = '/';
@@ -30,6 +31,7 @@ class Routes {
   static const String addBanner = '/addBanner';
   static const String addConstants = '/addConstants';
   static const String correspondence = '/correspondence';
+  static const String paymerntGates = '/paymerntGates';
 }
 
 class RoutesGenerator {
@@ -79,6 +81,8 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => AddConstants());
       case Routes.correspondence:
         return MaterialPageRoute(builder: (_) => const ExternalChatView());
+      case Routes.paymerntGates:
+        return MaterialPageRoute(builder: (_) => const PaymentGatesView());
 
       default:
         return unDefinedRoute();
