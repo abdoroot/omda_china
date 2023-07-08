@@ -2,6 +2,7 @@ import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/banners/add_banner.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/banners/banners_view.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/constants/add_constants.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/external_chats/external_chat_view.dart';
 
 class Routes {
   static const String splashRoute = '/';
@@ -28,6 +29,7 @@ class Routes {
   static const String bannerView = '/bannerView';
   static const String addBanner = '/addBanner';
   static const String addConstants = '/addConstants';
+  static const String correspondence = '/correspondence';
 }
 
 class RoutesGenerator {
@@ -75,6 +77,8 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => AddBanner());
       case Routes.addConstants:
         return MaterialPageRoute(builder: (_) => AddConstants());
+      case Routes.correspondence:
+        return MaterialPageRoute(builder: (_) => const ExternalChatView());
 
       default:
         return unDefinedRoute();

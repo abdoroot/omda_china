@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:china_omda/models/banner_model.dart';
 import 'package:china_omda/models/constant_model.dart';
+import 'package:china_omda/models/external_message_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -486,5 +487,13 @@ class AdminCubit extends Cubit<AdminState> {
         .doc('const')
         .snapshots()
         .map((event) => ConstantModel.fromJson(event.data()!));
+  }
+
+  // add Chat
+  Stream<List<ExternalMessageModel>> getChatMessage() {
+    return firestore
+        .collection('exteranl_message')
+        .snapshots()
+        .map((event) => event.docs.map((e) => ExternalMessageModel.fromJson(e.data())).toList());
   }
 }

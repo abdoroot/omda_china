@@ -197,7 +197,7 @@
     "holidays":"Holidays",
     "banners" : "Banners",
     "constants":"Constants",
-    "foreign_chats" : "Foreign correspondence",
+    "foreign_chats" : "Correspondence",
     "payment_gateways":"Payment gateways",
     "profits_and_losses":"Profits and losses",
     "entered_events":"Entered events",
@@ -221,7 +221,11 @@
     "active" : "Active",
     "in_active":"Inactive",
     "event_start_date" : "The start date of the event",
-    "china_gate":"Chinese portals application link"
+    "china_gate":"Chinese portals application link",
+    "view_message" : "View Message",
+    "correspondence":"Correspondence",
+    "new" : "New"
+
 
    
 }   
