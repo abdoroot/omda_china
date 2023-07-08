@@ -224,7 +224,16 @@
     "china_gate":"Chinese portals application link",
     "view_message" : "View Message",
     "correspondence":"Correspondence",
-    "new" : "New"
+    "new" : "New",
+    "offer_done":"Offer done",
+    "to_save":"To save",
+    "must_reply":"Must reply",
+    "redundant":"Redundant",
+    "important_note":"Important note",
+    "suggestion":"Suggestion",
+    "delete":"Delete"
+
+
 
 
    

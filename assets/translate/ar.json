@@ -226,7 +226,14 @@
    "china_gate":"رابط تطبيق بوابات صينية",
    "view_message" : "عرض الرسالة",
    "correspondence":"المراسلات",
-   "new" : "جديد"
+   "new" : "جديد",
+   "offer_done":"تم العرض",
+   "to_save":"للحفظ",
+   "must_reply":"يجب الرد",
+   "redundant":"مكرر",
+   "important_note":"ملاحظة مهمة",
+   "suggestion":"اقتراح",
+   "delete":"حذف"
 
 
 
