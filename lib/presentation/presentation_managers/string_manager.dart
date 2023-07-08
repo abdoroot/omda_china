@@ -224,5 +224,13 @@ class AppStrings {
   static const String howWorkEn = "how_work_en";
   static const String correspondence = "correspondence";
   static const String viewMessage = "view_message";
+  static const String newChatStatus = "new";
+  static const String offerDone = "offer_done";
+  static const String toSave = "to_save";
+  static const String mustReply = "must_reply";
+  static const String redundant = "redundant";
+  static const String importantNote = "important_note";
+  static const String suggestion = "suggestion";
+  static const String delete = "delete";
 
 }

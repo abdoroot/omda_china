@@ -496,4 +496,45 @@ class AdminCubit extends Cubit<AdminState> {
         .snapshots()
         .map((event) => event.docs.map((e) => ExternalMessageModel.fromJson(e.data())).toList());
   }
+
+  List<String> chatStatusList = [
+    AppStrings.newChatStatus,
+    AppStrings.offerDone,
+    AppStrings.toSave,
+    AppStrings.mustReply,
+    AppStrings.redundant,
+    AppStrings.importantNote,
+    AppStrings.suggestion,
+    AppStrings.delete,
+  ];
+  String? chatStatus;
+  void selecteChatStatus(val) {
+    chatStatus = val;
+  }
+
+  Future<void> changeChatStatus({
+    required String messageId,
+    required String statusValue,
+  }) async {
+    await firestore
+        .collection('exteranl_message')
+        .doc(messageId)
+        .update({'status': statusValue}).then((value) {
+      emit(AdminChangeChatStatusSuccess());
+    }).catchError((e) {
+      debugPrint(e.toString());
+      emit(AdminChangeChatStatusError());
+    });
+  }
+
+  Future<void> deleteChat({
+    required String messageId,
+  }) async {
+    await firestore.collection('exteranl_message').doc(messageId).delete().then((value) {
+      emit(AdminDeleteChatSuccess());
+    }).catchError((e) {
+      debugPrint(e.toString());
+      emit(AdminDeleteChatError());
+    });
+  }
 }

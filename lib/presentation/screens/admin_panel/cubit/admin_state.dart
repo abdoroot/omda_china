@@ -37,3 +37,11 @@ class AdminAddConstantsError extends AdminState {}
 class AdminModifyBannerSuccess extends AdminState {}
 
 class AdminModifyBannerError extends AdminState {}
+
+class AdminChangeChatStatusSuccess extends AdminState {}
+
+class AdminChangeChatStatusError extends AdminState {}
+
+class AdminDeleteChatSuccess extends AdminState {}
+
+class AdminDeleteChatError extends AdminState {}

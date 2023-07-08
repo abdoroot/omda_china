@@ -17,6 +17,7 @@ class ChatMessageDetails extends StatelessWidget {
       builder: (context, state) {
         AdminCubit cubit = AdminCubit.get(context);
         var lang = AppStrings.lang.tr(context);
+        cubit.chatStatus = model.status;
         return Scaffold(
           drawerEnableOpenDragGesture: lang == 'English' ? false : true,
           endDrawerEnableOpenDragGesture: lang == 'English' ? true : false,
@@ -98,6 +99,42 @@ class ChatMessageDetails extends StatelessWidget {
                           style: const TextStyle(
                             fontWeight: FontWeight.w600,
                           ),
+                        ),
+                        SizedBox(height: 5.h),
+                        GlobalDropDownButton(
+                          items: cubit.chatStatusList,
+                          onChanged: (value) {
+                            cubit.selecteChatStatus(value);
+                          },
+                          padding: EdgeInsets.zero,
+                          height: 7.h,
+                          lableText: AppStrings.status.tr(context),
+                          value: cubit.chatStatus,
+                        ),
+                        SizedBox(height: 3.h),
+                        GlobalButton(
+                          text: 'save',
+                          color: ColorManager.secondary,
+                          height: 5.h,
+                          width: 50.w,
+                          colorText: ColorManager.white,
+                          raduis: 20,
+                          onPressed: () {
+                            if (cubit.chatStatus == AppStrings.delete) {
+                              cubit.deleteChat(messageId: model.id!).then((value) {
+                                cubit.chatStatus = null;
+                                Navigator.pop(context);
+                              });
+                            } else {
+                              cubit
+                                  .changeChatStatus(
+                                      messageId: model.id!, statusValue: cubit.chatStatus!)
+                                  .then((value) {
+                                cubit.chatStatus = null;
+                                Navigator.pop(context);
+                              });
+                            }
+                          },
                         ),
                       ],
                     ),
