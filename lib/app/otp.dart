@@ -73,10 +73,10 @@ class OmdaOtpTextField extends StatefulWidget {
         assert(styles.isNotEmpty ? styles.length == numberOfFields : styles.isEmpty);
 
   @override
-  _OmdaOtpTextFieldState createState() => _OmdaOtpTextFieldState();
+  OmdaOtpTextFieldState createState() => OmdaOtpTextFieldState();
 }
 
-class _OmdaOtpTextFieldState extends State<OmdaOtpTextField> {
+class OmdaOtpTextFieldState extends State<OmdaOtpTextField> {
   late List<String?> _verificationCode;
   late List<FocusNode?> _focusNodes;
   late List<TextEditingController?> _textControllers;

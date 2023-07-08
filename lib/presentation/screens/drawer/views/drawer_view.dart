@@ -1,3 +1,4 @@
+import 'package:china_omda/models/constant_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class DrawerView extends StatelessWidget {
@@ -143,15 +144,22 @@ class DrawerView extends StatelessWidget {
                     itemText: AppStrings.connectUs,
                   ),
                   SizedBox(height: 1.h),
-                  DrawerItem(
-                    onTap: () {},
-                    itemText: AppStrings.chinesePortals,
-                    image: SvgPicture.asset(
-                      'assets/images/china_gate.svg',
-                      height: 8.h,
-                      width: 8.w,
-                    ),
-                  ),
+                  StreamBuilder<ConstantModel>(
+                      stream: cubit.getConstants(),
+                      builder: (context, snapshot) {
+                        return DrawerItem(
+                          onTap: () {
+                            print(snapshot.data!.chinaGateUrl!);
+                            launchUniversalLinkIos(Uri.parse(snapshot.data!.chinaGateUrl!));
+                          },
+                          itemText: AppStrings.chinesePortals,
+                          image: SvgPicture.asset(
+                            'assets/images/china_gate.svg',
+                            height: 8.h,
+                            width: 8.w,
+                          ),
+                        );
+                      }),
                   SizedBox(height: 2.h),
                   if (isAdmin == true)
                     DrawerItem(

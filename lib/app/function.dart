@@ -2,8 +2,8 @@ import 'dart:math';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:get_ip_address/get_ip_address.dart';
-
 
 Future<String> generateUniqueId() async {
   DateTime now = DateTime.now();
@@ -30,8 +30,10 @@ Future<bool> checkIdExists(String id) async {
   QuerySnapshot querySnapshot = await collection.where('id', isEqualTo: id).get();
   return querySnapshot.docs.isNotEmpty;
 }
+
 Future<bool> checkIdExistsOrder(String id) async {
-  CollectionReference collection = FirebaseFirestore.instance.collection('admin').doc('user_orders').collection('orders');
+  CollectionReference collection =
+      FirebaseFirestore.instance.collection('admin').doc('user_orders').collection('orders');
   QuerySnapshot querySnapshot = await collection.where('orederId', isEqualTo: id).get();
   return querySnapshot.docs.isNotEmpty;
 }
@@ -49,5 +51,18 @@ void retrieveCountryForIP() async {
     }
   } catch (e) {
     debugPrint('Failed to retrieve country information: $e');
+  }
+}
+
+Future<void> launchUniversalLinkIos(Uri url) async {
+  final bool nativeAppLaunchSucceeded = await launchUrl(
+    url,
+    mode: LaunchMode.externalApplication,
+  );
+  if (!nativeAppLaunchSucceeded) {
+    await launchUrl(
+      url,
+      mode: LaunchMode.inAppWebView,
+    );
   }
 }
