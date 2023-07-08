@@ -1,4 +1,5 @@
 import 'package:china_omda/models/constant_model.dart';
+import 'package:china_omda/models/external_message_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class DrawerCubit extends Cubit<DrawerState> {
@@ -28,5 +29,48 @@ class DrawerCubit extends Cubit<DrawerState> {
         .doc('const')
         .snapshots()
         .map((event) => ConstantModel.fromJson(event.data()!));
+  }
+
+  TextEditingController connectNameController = TextEditingController();
+  TextEditingController connectPhoneController = TextEditingController();
+  TextEditingController connectEmailController = TextEditingController();
+  TextEditingController connectMessageController = TextEditingController();
+  TextEditingController connectCompanyNameController = TextEditingController();
+
+  Future<void> snedExternalMessage({
+    required String senderName,
+    required String senderCompanyName,
+    required String senderPhone,
+    required String message,
+    required String senderEmail,
+  }) async {
+    var messageId = await generateUniqueId();
+    await firestore
+        .collection('exteranl_message')
+        .doc(messageId)
+        .set(ExternalMessageModel(
+          id: messageId,
+          senderName: senderName,
+          senderCompanyName: senderCompanyName,
+          senderPhone: senderPhone,
+          message: message,
+          senderEmail: senderEmail,
+          messageTime: DateTime.now().toString(),
+          status: 'new',
+        ).toMap())
+        .then((value) {
+      emit(DrawerSendExternalMessageSuccess());
+    }).catchError((e) {
+      debugPrint(e.toString());
+      emit(DrawerSendExternalMessageError());
+    });
+  }
+
+  void clearExternalMessage() {
+    connectNameController.clear();
+    connectPhoneController.clear();
+    connectEmailController.clear();
+    connectMessageController.clear();
+    connectCompanyNameController.clear();
   }
 }
