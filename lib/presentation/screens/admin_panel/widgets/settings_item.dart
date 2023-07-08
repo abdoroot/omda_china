@@ -4,13 +4,12 @@ class SettingsItem extends StatelessWidget {
   final String image;
   final String text;
   final Function()? onTap;
-  
 
   const SettingsItem({
     super.key,
     required this.image,
     required this.text,
-     this.onTap,
+    this.onTap,
   });
 
   @override
@@ -21,12 +20,18 @@ class SettingsItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.asset(image),
-          SizedBox(height: 1.h),
-          Text(
-            text,
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 12.sp,
+          SizedBox(height: 2.h),
+          SizedBox(
+            width: 20.w,
+            child: Text(
+              text,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 12.sp,
+                height: 1,
+              ),
             ),
           ),
         ],

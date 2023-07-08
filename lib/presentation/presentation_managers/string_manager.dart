@@ -222,5 +222,7 @@ class AppStrings {
   static const String termsConditionsEn = "terms_conditions_en";
   static const String howWorkAr = "how_work_ar";
   static const String howWorkEn = "how_work_en";
+  static const String correspondence = "correspondence";
+  static const String viewMessage = "view_message";
 
 }

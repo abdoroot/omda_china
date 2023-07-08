@@ -223,7 +223,12 @@
    "active" : "فعال",
    "in_active":"غير فعال",
    "event_start_date" : "تاريخ بداية الفعالية",
-   "china_gate":"رابط تطبيق بوابات صينية"
+   "china_gate":"رابط تطبيق بوابات صينية",
+   "view_message" : "عرض الرسالة",
+   "correspondence":"المراسلات",
+   "new" : "جديد"
+
+
 
 
 
