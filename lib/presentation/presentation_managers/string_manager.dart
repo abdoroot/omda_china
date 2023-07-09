@@ -232,5 +232,13 @@ class AppStrings {
   static const String importantNote = "important_note";
   static const String suggestion = "suggestion";
   static const String delete = "delete";
-
+  static const String fieldReport = "field_report";
+  static const String from = "from";
+  static const String to = "to";
+  static const String reason = "reason";
+  static const String type = "type";
+  static const String amount = "amount";
+  static const String addLosses = "add_losses";
+  static const String losses = "losses";
+  static const String profit = "profit";
 }

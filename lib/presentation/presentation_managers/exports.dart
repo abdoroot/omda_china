@@ -98,3 +98,6 @@ export 'package:china_omda/presentation/screens/admin_panel/views/events/modify_
 export 'package:china_omda/app/bloc_observer.dart';
 export 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
 export 'package:china_omda/presentation/screens/orders/cubit/orders_cubit.dart';
+export 'package:jiffy/jiffy.dart';
+
+

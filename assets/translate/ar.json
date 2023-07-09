@@ -233,7 +233,21 @@
    "redundant":"مكرر",
    "important_note":"ملاحظة مهمة",
    "suggestion":"اقتراح",
-   "delete":"حذف"
+   "delete":"حذف",
+   "field_report":"مجال عرض التقرير",
+   "from":"من",
+   "to":"إلى",
+   "reason" : "السبب",
+   "type" : "النوع",
+   "amount":"المبلغ",
+   "add_losses" : "إضافة خسائر",
+   "losses" : "خسائر",
+   "profit" : "ربح"
+
+
+
+
+
 
 
 

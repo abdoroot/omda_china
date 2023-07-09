@@ -4,6 +4,8 @@ import 'package:china_omda/presentation/screens/admin_panel/views/banners/banner
 import 'package:china_omda/presentation/screens/admin_panel/views/constants/add_constants.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/external_chats/external_chat_view.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/payment_gates/payment_gates_view.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/profits_and_losses/add_profits_and_losses.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/profits_and_losses/profits_and_losses_view.dart';
 
 class Routes {
   static const String splashRoute = '/';
@@ -32,6 +34,8 @@ class Routes {
   static const String addConstants = '/addConstants';
   static const String correspondence = '/correspondence';
   static const String paymerntGates = '/paymerntGates';
+  static const String profits = '/profits';
+  static const String addProfits = '/addProfits';
 }
 
 class RoutesGenerator {
@@ -83,6 +87,10 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const ExternalChatView());
       case Routes.paymerntGates:
         return MaterialPageRoute(builder: (_) => const PaymentGatesView());
+      case Routes.profits:
+        return MaterialPageRoute(builder: (_) => const ProfitsAndLossesView());
+      case Routes.addProfits:
+        return MaterialPageRoute(builder: (_) => AddProfitsAndLosses());
 
       default:
         return unDefinedRoute();

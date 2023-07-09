@@ -8,13 +8,14 @@ class OmdaTextFormFiled extends StatelessWidget {
   final TextInputType? keyboardType;
   final Color? contentTextColor;
   final bool enabled;
-  final String lableText;
+  final String? lableText;
   final double? height;
   final double? width;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final Function(String)? onFieldSubmitted;
   final String? Function(String?)? validator;
+  final Function(String)? onChanged;
 
   const OmdaTextFormFiled({
     super.key,
@@ -28,7 +29,8 @@ class OmdaTextFormFiled extends StatelessWidget {
     this.onFieldSubmitted,
     this.validator,
     this.prefixIcon,
-    required this.lableText,
+    this.lableText,
+    this.onChanged,
   });
 
   @override
@@ -44,6 +46,7 @@ class OmdaTextFormFiled extends StatelessWidget {
         style: TextStyle(
           color: contentTextColor ?? ColorManager.text,
         ),
+        onChanged: onChanged,
         onFieldSubmitted: onFieldSubmitted,
         decoration: InputDecoration(
           enabled: enabled,
@@ -51,14 +54,17 @@ class OmdaTextFormFiled extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: ColorManager.primary),
           ),
+          isDense: true,
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,
           floatingLabelAlignment: FloatingLabelAlignment.center,
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          label: Text(
-            lableText.tr(context),
-            textAlign: TextAlign.center,
-          ),
+          label: lableText == null
+              ? const SizedBox()
+              : Text(
+                  lableText!.tr(context),
+                  textAlign: TextAlign.center,
+                ),
           labelStyle: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w400,
