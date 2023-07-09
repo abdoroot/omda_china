@@ -1,3 +1,4 @@
+import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:flutter/material.dart';
 
 class GlobalButton extends StatelessWidget {
@@ -8,11 +9,13 @@ class GlobalButton extends StatelessWidget {
   final double height;
   final double width;
   final double? raduis;
+  final double? fontSize;
 
   const GlobalButton({
     super.key,
     this.onPressed,
     this.raduis,
+    this.fontSize,
     required this.text,
     required this.color,
     required this.height,
@@ -36,8 +39,10 @@ class GlobalButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
+            textAlign: TextAlign.center,
+            maxLines: 1,
             style: TextStyle(
-              fontSize: 13.08,
+              fontSize: fontSize ?? 13.sp,
               fontWeight: FontWeight.w400,
               color: colorText,
             ),

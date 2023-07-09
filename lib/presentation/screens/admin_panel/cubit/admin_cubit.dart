@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:china_omda/models/banner_model.dart';
 import 'package:china_omda/models/constant_model.dart';
 import 'package:china_omda/models/external_message_model.dart';
+import 'package:china_omda/models/profits_and_losess_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -489,7 +490,7 @@ class AdminCubit extends Cubit<AdminState> {
         .map((event) => ConstantModel.fromJson(event.data()!));
   }
 
-  // add Chat
+  // control Chat
   Stream<List<ExternalMessageModel>> getChatMessage() {
     return firestore
         .collection('exteranl_message')
@@ -536,5 +537,113 @@ class AdminCubit extends Cubit<AdminState> {
       debugPrint(e.toString());
       emit(AdminDeleteChatError());
     });
+  }
+
+  // manage profits and losses
+
+  DateTime? profitsStartDate;
+  DateTime? profitsEndDate;
+  void seleteStartDateLosses(val) {
+    profitsStartDate = val;
+    emit(AdminSelecteEndDateForLosses());
+  }
+
+  void seleteEndDateLosses(val) {
+    profitsEndDate = val;
+    emit(AdminSelecteEndDateForLosses());
+  }
+
+  DateTime? addProfitsDate;
+  TextEditingController addProfitsAmount = TextEditingController();
+  TextEditingController addProfitsReason = TextEditingController();
+
+  void seleteDateLosses(val) {
+    addProfitsDate = val;
+    emit(AdminSelecteEndDateForLosses());
+  }
+
+  Future<void> addLosses({
+    required DateTime lossesDate,
+    required String reason,
+    required String type,
+    required String amount,
+  }) async {
+    var lossesId = await generateUniqueId();
+    await firestore
+        .collection('losses_and_profits')
+        .doc(lossesId)
+        .set(ProfitsAndLossesModel(
+          id: lossesId,
+          date: lossesDate,
+          reason: reason,
+          type: type,
+          amount: amount,
+        ).toMap())
+        .then((value) {
+      emit(AdminAddLossesSuccess());
+    }).catchError((e) {
+      debugPrint(e.toString());
+      emit(AdminAddLossesError());
+    });
+  }
+
+  void clearAddLossesController() {
+    addProfitsDate = null;
+    addProfitsAmount.clear();
+    addProfitsReason.clear();
+  }
+
+  Stream<List<ProfitsAndLossesModel>> getAllProfitsAndLosses() {
+    return firestore
+        .collection('losses_and_profits')
+        .orderBy('date', descending: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => ProfitsAndLossesModel.fromJson(e.data())).toList());
+  }
+
+  Stream<int> getLossesSumStream() {
+    return FirebaseFirestore.instance
+        .collection('losses_and_profits')
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      int sum = 0;
+      for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
+        ProfitsAndLossesModel data =
+            ProfitsAndLossesModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
+        if (data.type == 'losses') {
+          sum += int.tryParse(data.amount!)!;
+        }
+      }
+      return sum;
+    });
+  }
+
+  Stream<int> getProfitsSumStream() {
+    return FirebaseFirestore.instance
+        .collection('losses_and_profits')
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      int sum = 0;
+      for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
+        ProfitsAndLossesModel data =
+            ProfitsAndLossesModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
+        if (data.type != 'losses') {
+          sum += int.tryParse(data.amount!)!;
+        }
+      }
+      return sum;
+    });
+  }
+
+  Stream<List<ProfitsAndLossesModel>> getProfitAndLossesRangDate(
+    DateTime startDate,
+    DateTime endDate,
+  ) {
+    return FirebaseFirestore.instance
+        .collection('losses_and_profits')
+        .where('date', isGreaterThanOrEqualTo: startDate)
+        .where('date', isLessThanOrEqualTo: endDate)
+        .snapshots()
+        .map((event) => event.docs.map((e) => ProfitsAndLossesModel.fromJson(e.data())).toList());
   }
 }

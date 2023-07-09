@@ -45,3 +45,9 @@ class AdminChangeChatStatusError extends AdminState {}
 class AdminDeleteChatSuccess extends AdminState {}
 
 class AdminDeleteChatError extends AdminState {}
+
+class AdminAddLossesSuccess extends AdminState {}
+
+class AdminAddLossesError extends AdminState {}
+
+class AdminSelecteEndDateForLosses extends AdminState {}

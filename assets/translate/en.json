@@ -231,7 +231,16 @@
     "redundant":"Redundant",
     "important_note":"Important note",
     "suggestion":"Suggestion",
-    "delete":"Delete"
+    "delete":"Delete",
+    "field_report":"The field of view of the report",
+    "from":"From",
+    "to":"To",
+    "reason" : "Reason",
+    "type" : "Type",
+    "amount":"Amount",
+    "add_losses" : "Add losses",
+    "losses" : "Losses",
+    "profit" : "Profit"
 
 
 

@@ -275,7 +275,9 @@ class ControlPanelView extends StatelessWidget {
                                 text: AppStrings.paymentGateways.tr(context),
                               ),
                               SettingsItem(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.pushNamed(context, Routes.profits);
+                                },
                                 image: 'assets/images/payment.png',
                                 text: AppStrings.profitsAndLosses.tr(context),
                               ),
