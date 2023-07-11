@@ -1,5 +1,5 @@
-import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'dart:io';
+import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -59,27 +59,44 @@ class AddOrdersCubit extends Cubit<AddOrdersState> {
     required List<String> interests,
     required String numberOfPassengers,
   }) async {
+    OrderModel orderModel = OrderModel(
+      orderId: ordrId,
+      orderType: orederType,
+      orderDate: DateTime.now().toString(),
+      userName: userName,
+      userUID: uId!,
+      orderStatus: 'Opened',
+      numberOfPassengers: numberOfPassengers,
+      interests: interests,
+    );
     await firestroe
         .collection('users')
         .doc(uId)
         .collection('orders')
         .doc(ordrId)
-        .set(
-          OrderModel(
-            orderId: ordrId,
-            orderType: orederType,
-            orderDate: DateTime.now().toString(),
-            userName: userName,
-            userUID: uId!,
-            orderStatus: 'Opened',
-            numberOfPassengers: numberOfPassengers,
-            interests: interests,
-          ).toMap(),
-        )
-        .then((value) {
-      emit(MakeTourismOrderSuccess());
-    }).catchError((error) {
-      emit(MakeTourismOrderError());
+        .set(orderModel.toMap())
+        .then((value) async {
+      await firestroe
+          .collection('users')
+          .doc(uId)
+          .collection('orders')
+          .doc(ordrId)
+          .set(orderModel.toMap())
+          .then((value) async {
+        await firestroe
+            .collection('admin_panel')
+            .doc('user')
+            .collection('orders')
+            .doc(ordrId)
+            .set(orderModel.toMap())
+            .then((value) {
+          emit(MakeTourismOrderSuccess());
+        }).catchError((e) {
+          emit(MakeTourismOrderError());
+        });
+      }).catchError((error) {
+        emit(MakeTourismOrderError());
+      });
     });
   }
 
@@ -135,32 +152,42 @@ class AddOrdersCubit extends Cubit<AddOrdersState> {
     required String inspectionProductsBeforeSend,
     required List<Product> products,
   }) async {
+    OrderModel orderModel = OrderModel(
+      orderId: ordrId,
+      orderType: orederType,
+      orderDate: DateTime.now().toString(),
+      userName: userName,
+      userUID: uId!,
+      orderStatus: 'Opened',
+      inspectionProductsBeforeSend: inspectionProductsBeforeSend,
+      numberOfProducts: numberOfProduct,
+      priceUpOfExpected: priceUpOfExpected,
+      productContainBatteries: productContainBatteries,
+      productContainsBranded: productContainsBranded,
+      productTakeTime: productTakeTime,
+      productUnavailable: productUnavailable,
+      sellerNotReturnProduct: sellerNotReturnProduct,
+      products: products,
+    );
     await firestroe
         .collection('users')
         .doc(uId)
         .collection('orders')
         .doc(ordrId)
-        .set(
-          OrderModel(
-            orderId: ordrId,
-            orderType: orederType,
-            orderDate: DateTime.now().toString(),
-            userName: userName,
-            userUID: uId!,
-            orderStatus: 'Opened',
-            inspectionProductsBeforeSend: inspectionProductsBeforeSend,
-            numberOfProducts: numberOfProduct,
-            priceUpOfExpected: priceUpOfExpected,
-            productContainBatteries: productContainBatteries,
-            productContainsBranded: productContainsBranded,
-            productTakeTime: productTakeTime,
-            productUnavailable: productUnavailable,
-            sellerNotReturnProduct: sellerNotReturnProduct,
-            products: products,
-          ).toMap(),
-        )
-        .then((value) {
-      emit(MakeProductOrderSuccess());
+        .set(orderModel.toMap())
+        .then((value) async {
+      await firestroe
+          .collection('admin_panel')
+          .doc('user')
+          .collection('orders')
+          .doc(ordrId)
+          .set(orderModel.toMap())
+          .then((value) {
+        emit(MakeProductOrderSuccess());
+        products = [];
+      }).catchError((e) {
+        emit(MakeProductOrderError());
+      });
     }).catchError((error) {
       emit(MakeProductOrderError());
     });

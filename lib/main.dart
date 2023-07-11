@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
                 theme: ThemeData(fontFamily: 'Cairo'),
                 onGenerateRoute: RoutesGenerator.getRoutes,
                 initialRoute: Routes.splashRoute,
+                //home:LogInPage(),
                 locale: state is ChangeLocaleState ? state.locale : null,
                 localizationsDelegates: const [
                   AppLocalizations.delegate,

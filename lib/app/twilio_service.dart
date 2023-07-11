@@ -13,10 +13,16 @@ class TwilioServices {
     var rand = Random();
     var verifyCode = rand.nextInt(9000) + 1000;
     code = verifyCode;
+
     print(code);
-    await twilioFlutter.sendSMS(
-      toNumber: phoneNumber,
+    twilioFlutter.sendWhatsApp(
+      toNumber:  phoneNumber,
       messageBody: "The verify code $verifyCode",
+
     );
+    // await twilioFlutter.sendSMS(
+    //   toNumber: phoneNumber,
+    //   messageBody: "The verify code $verifyCode",
+    // );
   }
 }
