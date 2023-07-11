@@ -1,7 +1,7 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
-class EventsView extends StatelessWidget {
-  const EventsView({super.key});
+class AdminEventsView extends StatelessWidget {
+  const AdminEventsView({super.key});
 
   @override
   Widget build(BuildContext context) {

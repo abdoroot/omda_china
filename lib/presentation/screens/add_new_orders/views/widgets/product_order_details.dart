@@ -84,14 +84,32 @@ class ProductOrderDetails extends StatelessWidget {
                               colorText: ColorManager.white,
                               onPressed: () async {
                                 await cubit.pickAllImage().then((value) async {
-                                  await cubit.uploadImages(cubit.images).then((value) {
-                                    for (int i = 0; i < value.length; i++) {
-                                      cubit.imagesForAll[cubit.productIndex].add(value[i]);
-                                      print(cubit.imagesForAll[cubit.productIndex][i]);
+                                  try {
+                                    List<String> uploadedImageUrls =
+                                        await cubit.uploadImages(cubit.images);
+                                    for (int i = 0; i < uploadedImageUrls.length; i++) {
+                                      cubit.imagesForAll[cubit.productIndex]
+                                          .add(uploadedImageUrls[i]);
+                                      print('Uploaded image URL: ${uploadedImageUrls[i]}');
+                                      print(
+                                          'Current image URL in imagesForAll: ${cubit.imagesForAll[cubit.productIndex][i]}');
                                     }
-                                    cubit.images = [];
-                                  });
+                                  } catch (e) {
+                                    print('Error uploading images: $e');
+                                  }
+                                  cubit.images = [];
                                 });
+                                // await cubit.pickAllImage().then((value) async {
+                                //   await cubit.uploadImages(cubit.images).then((value) {
+                                //     for (int i = 0; i < value.length; i++) {
+                                //       cubit.imagesForAll[cubit.productIndex].add(value[i]);
+                                //       print(value[i]);
+                                //       print('/////////');
+                                //       print(cubit.imagesForAll[cubit.productIndex][i]);
+                                //     }
+                                //   });
+                                //   cubit.images = [];
+                                // });
                               },
                             ),
                             Text(

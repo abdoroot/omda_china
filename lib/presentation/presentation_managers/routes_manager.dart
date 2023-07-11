@@ -6,6 +6,7 @@ import 'package:china_omda/presentation/screens/admin_panel/views/external_chats
 import 'package:china_omda/presentation/screens/admin_panel/views/payment_gates/payment_gates_view.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/profits_and_losses/add_profits_and_losses.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/profits_and_losses/profits_and_losses_view.dart';
+import 'package:china_omda/presentation/screens/events/views/events_view.dart';
 
 class Routes {
   static const String splashRoute = '/';
