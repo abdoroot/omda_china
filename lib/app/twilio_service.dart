@@ -1,11 +1,7 @@
 import 'dart:math';
 import 'package:twilio_flutter/twilio_flutter.dart';
-import 'package:flutter_twilio/flutter_twilio.dart';
 
 class TwilioServices {
-  FlutterTwilio s = FlutterTwilio();
- 
-
   TwilioFlutter twilioFlutter = TwilioFlutter(
       accountSid: "AC15b9a0775261d15b76fc5c0ae6822ccd", // found on console
       authToken: "8d4c0f9031ccd38825f3387c42b824d2", // found on console

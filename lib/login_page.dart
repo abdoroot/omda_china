@@ -65,7 +65,7 @@ class _LogInPageState extends State<LogInPage> {
                             ),
                           );
                         },
-                        timeout: Duration(seconds: 90),
+                        timeout: const Duration(seconds: 90),
                         codeAutoRetrievalTimeout: (String verificationId) {},
                       );
                       // await FirebaseAuth.instance.verifyPhoneNumber(
@@ -102,11 +102,11 @@ class _LogInPageState extends State<LogInPage> {
                     },
                     child: const Text("SEND"),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 100,
                   ),
                   Text(verificationFailedMessage),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),

@@ -1,4 +1,3 @@
-import 'package:china_omda/models/banner_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/banners/modify_banner.dart';
 import 'package:china_omda/presentation/screens/admin_panel/widgets/banner_item.dart';

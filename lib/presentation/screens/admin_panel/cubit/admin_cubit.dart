@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:china_omda/models/banner_model.dart';
 import 'package:china_omda/models/constant_model.dart';
 import 'package:china_omda/models/external_message_model.dart';
 import 'package:china_omda/models/profits_and_losess_model.dart';

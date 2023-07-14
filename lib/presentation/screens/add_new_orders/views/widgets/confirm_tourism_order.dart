@@ -1,5 +1,4 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:jiffy/jiffy.dart';
 
 class ConfirmTourismOrder extends StatelessWidget {
   const ConfirmTourismOrder({super.key});

@@ -1,6 +1,5 @@
 import 'package:china_omda/models/external_message_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:jiffy/jiffy.dart';
 
 class ChatMessageItem extends StatelessWidget {
   final Function()? onTap;
