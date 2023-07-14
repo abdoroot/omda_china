@@ -368,6 +368,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_twilio:
+    dependency: "direct main"
+    description:
+      name: flutter_twilio
+      sha256: "2504b1370ac4ee5f763631504334e41343f5068b835d467104bcff7119762e56"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.18"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

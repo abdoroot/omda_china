@@ -57,7 +57,9 @@ class ControlPanelView extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, Routes.usersView);
+                            },
                             child: Column(
                               children: [
                                 Image.asset(ImageAssets.remove, height: 7.h),
@@ -80,7 +82,7 @@ class ControlPanelView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           StreamBuilder<List<OrderModel>>(
-                            stream: null, //getOpenedOrder(),
+                            stream: cubit.getOpenedOrder(),
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
@@ -101,7 +103,7 @@ class ControlPanelView extends StatelessWidget {
                             },
                           ),
                           StreamBuilder<List<OrderModel>>(
-                            stream: null, //getToPayOrder(),
+                            stream: cubit.getToPayOrder(),
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
@@ -123,7 +125,7 @@ class ControlPanelView extends StatelessWidget {
                             },
                           ),
                           StreamBuilder<List<OrderModel>>(
-                            stream: null, //getFinishedOrder(),
+                            stream: cubit.getFinishedOrder(),
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
@@ -145,7 +147,7 @@ class ControlPanelView extends StatelessWidget {
                             },
                           ),
                           StreamBuilder<List<OrderModel>>(
-                            stream: null, //getShipmentOrder(),
+                            stream: cubit.getShipmentOrder(),
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
@@ -166,7 +168,7 @@ class ControlPanelView extends StatelessWidget {
                             },
                           ),
                           StreamBuilder<List<OrderModel>>(
-                            stream: null, //getCanceledOrder(),
+                            stream: cubit.getCanceledOrder(),
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {

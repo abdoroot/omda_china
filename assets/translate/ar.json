@@ -242,7 +242,13 @@
    "amount":"المبلغ",
    "add_losses" : "إضافة خسائر",
    "losses" : "خسائر",
-   "profit" : "ربح"
+   "profit" : "ربح",
+   "number_of_user" : "عدد المستخدمين",
+   "date_of_registration":"تاريخ التسجيل",
+   "user_profile":"الملف الشخصي للمستخدم"
+
+
+
 
 
 
