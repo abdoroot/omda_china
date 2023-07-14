@@ -21,7 +21,7 @@ class AddProfitsAndLosses extends StatelessWidget {
           backgroundColor: ColorManager.white,
           body: Column(
             children: [
-              HeaderView(
+              const HeaderView(
                 headerText: AppStrings.addLosses,
                 isLogin: false,
               ),

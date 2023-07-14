@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPPage extends StatefulWidget {
-  OTPPage({required this.verificationId, required this.isTimeOut2});
+  const OTPPage({super.key, required this.verificationId, required this.isTimeOut2});
   final String verificationId;
   final bool isTimeOut2;
 
@@ -56,9 +56,9 @@ class _OTPPageState extends State<OTPPage> {
                 // height: 300,
                 child: ListView(
                   children: <Widget>[
-                    SizedBox(height: 8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    const SizedBox(height: 8),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Phone Number Verification',
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
@@ -68,7 +68,7 @@ class _OTPPageState extends State<OTPPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                             text: "Enter the code sent to ",
                             children: [
                               TextSpan(
@@ -82,7 +82,7 @@ class _OTPPageState extends State<OTPPage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Form(
@@ -109,11 +109,11 @@ class _OTPPageState extends State<OTPPage> {
                               inactiveFillColor: Colors.white,
                             ),
                             cursorColor: Colors.black,
-                            animationDuration: Duration(milliseconds: 300),
+                            animationDuration: const Duration(milliseconds: 300),
                             errorAnimationController: errorController,
                             controller: otpController,
                             keyboardType: TextInputType.number,
-                            boxShadows: [
+                            boxShadows: const [
                               BoxShadow(
                                 offset: Offset(0, 1),
                                 color: Colors.white,
@@ -136,16 +136,16 @@ class _OTPPageState extends State<OTPPage> {
                       child: Text(
                         hasError ? "please resend the code!" : "",
                         style:
-                            TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w400),
+                            const TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w400),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Didn't receive the code? ",
                           style: TextStyle(color: Colors.black54, fontSize: 15),
                         ),
@@ -181,7 +181,7 @@ class _OTPPageState extends State<OTPPage> {
                                     );
                                   }
                                 : null,
-                            child: Text(
+                            child: const Text(
                               "RESEND",
                               style: TextStyle(
                                   color: Color(0xFF91D3B3),
@@ -190,11 +190,20 @@ class _OTPPageState extends State<OTPPage> {
                             ))
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 14,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
+                      decoration: BoxDecoration(
+                          color: Colors.green.shade300,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.green.shade200, offset: const Offset(1, -2), blurRadius: 5),
+                            BoxShadow(
+                                color: Colors.green.shade200, offset: const Offset(-1, 2), blurRadius: 5)
+                          ]),
                       child: ButtonTheme(
                         height: 50,
                         child: TextButton(
@@ -235,36 +244,27 @@ class _OTPPageState extends State<OTPPage> {
                                     });
                                     if (auth.currentUser != null) {
                                       Navigator.of(context).push(PageRouteBuilder(
-                                          pageBuilder: (_, __, ___) => HomePage()));
+                                          pageBuilder: (_, __, ___) => const HomePage()));
                                     }
                                   }
                                 },
                           child: Center(
                             child: Text(
                               "VERIFY".toUpperCase(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
                       ),
-                      decoration: BoxDecoration(
-                          color: Colors.green.shade300,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.green.shade200, offset: Offset(1, -2), blurRadius: 5),
-                            BoxShadow(
-                                color: Colors.green.shade200, offset: Offset(-1, 2), blurRadius: 5)
-                          ]),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Text(
                       verificationFailedMessage,
                       style:
-                          TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w400),
+                          const TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),

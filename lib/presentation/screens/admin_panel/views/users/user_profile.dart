@@ -46,7 +46,7 @@ class UserProfile extends StatelessWidget {
                               children: [
                                 Text(
                                   '${AppStrings.dateOfRegistration.tr(context)}\n${Jiffy.parse(userModel.registerDate!).format(pattern: 'dd/MM/yyyy')}',
-                                  style: TextStyle(),
+                                  style: const TextStyle(),
                                 ),
                                 OmdaTextFormFiled(
                                   controller: cubit.idController,

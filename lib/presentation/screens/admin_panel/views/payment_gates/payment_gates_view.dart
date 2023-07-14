@@ -37,7 +37,7 @@ class PaymentGatesView extends StatelessWidget {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'مفعل',
                                   ),
                                   Switch(
@@ -66,7 +66,7 @@ class PaymentGatesView extends StatelessWidget {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'غير مفعل',
                                   ),
                                   Switch(

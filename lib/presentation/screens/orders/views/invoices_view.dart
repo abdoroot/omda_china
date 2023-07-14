@@ -1,6 +1,4 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/orders/views/details_invoices_view.dart';
-import 'package:china_omda/presentation/screens/orders/views/widget/order_bills_widget.dart';
 import 'package:china_omda/presentation/screens/orders/views/widget/product_item.dart';
 
 class InvoicesView extends StatelessWidget {

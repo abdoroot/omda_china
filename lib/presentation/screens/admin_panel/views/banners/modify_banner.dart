@@ -1,6 +1,4 @@
-import 'package:china_omda/models/banner_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:jiffy/jiffy.dart';
 
 class ModifyBanner extends StatelessWidget {
   final BannerModel model;
