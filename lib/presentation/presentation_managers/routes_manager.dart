@@ -6,6 +6,7 @@ import 'package:china_omda/presentation/screens/admin_panel/views/external_chats
 import 'package:china_omda/presentation/screens/admin_panel/views/payment_gates/payment_gates_view.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/profits_and_losses/add_profits_and_losses.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/profits_and_losses/profits_and_losses_view.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/users/users_view.dart';
 import 'package:china_omda/presentation/screens/events/views/events_view.dart';
 
 class Routes {
@@ -37,6 +38,7 @@ class Routes {
   static const String paymerntGates = '/paymerntGates';
   static const String profits = '/profits';
   static const String addProfits = '/addProfits';
+  static const String usersView = '/usersView';
 }
 
 class RoutesGenerator {
@@ -92,6 +94,8 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const ProfitsAndLossesView());
       case Routes.addProfits:
         return MaterialPageRoute(builder: (_) => AddProfitsAndLosses());
+      case Routes.usersView:
+        return MaterialPageRoute(builder: (_) => const UsersView());
 
       default:
         return unDefinedRoute();

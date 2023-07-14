@@ -240,7 +240,10 @@
     "amount":"Amount",
     "add_losses" : "Add losses",
     "losses" : "Losses",
-    "profit" : "Profit"
+    "profit" : "Profit",
+    "number_of_user" : "Users number",
+    "date_of_registration":"Date of registration",
+    "user_profile":"User profile"
 
 
 

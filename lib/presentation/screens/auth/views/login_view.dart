@@ -1,3 +1,4 @@
+import 'package:china_omda/app/whatsapp_code.dart';
 import 'package:china_omda/presentation/global_widget/omda_otp_text_field.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
@@ -135,12 +136,13 @@ class LoginView extends StatelessWidget {
                   const Spacer(flex: 1),
                   GestureDetector(
                     onTap: () {
-                      if (loginKey.currentState!.validate()) {
-                        cubit.userLogin(
-                          phone: cubit.loginPhoneController.text,
-                          password: cubit.loginPasswordOtp.text,
-                        );
-                      }
+                      Whatsapp.sendWhatsAppMessage();
+                      // if (loginKey.currentState!.validate()) {
+                      //   cubit.userLogin(
+                      //     phone: cubit.loginPhoneController.text,
+                      //     password: cubit.loginPasswordOtp.text,
+                      //   );
+                      // }
                     },
                     child: Stack(
                       alignment: Alignment.center,

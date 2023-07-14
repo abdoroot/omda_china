@@ -646,4 +646,101 @@ class AdminCubit extends Cubit<AdminState> {
         .snapshots()
         .map((event) => event.docs.map((e) => ProfitsAndLossesModel.fromJson(e.data())).toList());
   }
+
+  /////////////// Manage users
+
+  Stream<List<UserModel>> getAllUsers() {
+    return firestore
+        .collection('users')
+        .where('accountType', isNotEqualTo: 'admin')
+        .snapshots()
+        .map((event) => event.docs.map((e) => UserModel.fromJson(e.data())).toList());
+  }
+
+  Stream<List<UserModel>> getActiveUsers() {
+    return firestore
+        .collection('users')
+        .where('accountType', isNotEqualTo: 'admin')
+        .where('accountStatus', isEqualTo: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => UserModel.fromJson(e.data())).toList());
+  }
+
+  Stream<List<UserModel>> getInActiveUsers() {
+    return firestore
+        .collection('users')
+        .where('accountType', isNotEqualTo: 'admin')
+        .where('accountStatus', isEqualTo: false)
+        .snapshots()
+        .map((event) => event.docs.map((e) => UserModel.fromJson(e.data())).toList());
+  }
+
+  TextEditingController idController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController accountTypeController = TextEditingController();
+
+  /// manage orders
+
+  Stream<List<OrderModel>> getOpenedOrder() {
+    return firestore
+        .collection('admin_panel')
+        .doc('user')
+        .collection('orders')
+        .where('orderStatus', isEqualTo: 'Opened')
+        .snapshots()
+        .map(
+          (event) => event.docs.map((e) => OrderModel.fromJson(e.data())).toList(),
+        );
+  }
+
+  Stream<List<OrderModel>> getToPayOrder() {
+    return firestore
+        .collection('admin_panel')
+        .doc('user')
+        .collection('orders')
+        .where('orderStatus', isEqualTo: 'To pay')
+        .snapshots()
+        .map(
+          (event) => event.docs.map((e) => OrderModel.fromJson(e.data())).toList(),
+        );
+  }
+
+  Stream<List<OrderModel>> getFinishedOrder() {
+    return firestore
+        .collection('admin_panel')
+        .doc('user')
+        .collection('orders')
+        .where('orderStatus', isEqualTo: 'Finished')
+        .snapshots()
+        .map(
+          (event) => event.docs.map((e) => OrderModel.fromJson(e.data())).toList(),
+        );
+  }
+
+  Stream<List<OrderModel>> getShipmentOrder() {
+    return firestore
+        .collection('admin_panel')
+        .doc('user')
+        .collection('orders')
+        .where('orderStatus', isEqualTo: 'Shipment')
+        .snapshots()
+        .map(
+          (event) => event.docs.map((e) => OrderModel.fromJson(e.data())).toList(),
+        );
+  }
+
+  Stream<List<OrderModel>> getCanceledOrder() {
+    return firestore
+        .collection('admin_panel')
+        .doc('user')
+        .collection('orders')
+        .where('orderStatus', isEqualTo: 'Canceled')
+        .snapshots()
+        .map(
+          (event) => event.docs.map((e) => OrderModel.fromJson(e.data())).toList(),
+        );
+  }
 }

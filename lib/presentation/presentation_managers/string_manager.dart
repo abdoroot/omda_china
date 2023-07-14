@@ -241,4 +241,7 @@ class AppStrings {
   static const String addLosses = "add_losses";
   static const String losses = "losses";
   static const String profit = "profit";
+  static const String numberOfUser = "number_of_user";
+  static const String dateOfRegistration = "date_of_registration";
+  static const String userProfile = "user_profile";
 }
