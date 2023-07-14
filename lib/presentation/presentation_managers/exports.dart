@@ -55,11 +55,6 @@ export 'package:china_omda/presentation/presentation_managers/exports.dart';
 export 'package:china_omda/presentation/screens/change_control_password/views/change_control_password_view.dart';
 export 'package:china_omda/presentation/screens/drawer/views/widgets/dashboard_order_item.dart';
 export 'package:china_omda/presentation/screens/drawer/views/widgets/divider_dashboard.dart';
-export 'package:china_omda/presentation/screens/orders/views/canceled_orders_view.dart';
-export 'package:china_omda/presentation/screens/orders/views/expired_requests_view.dart';
-export 'package:china_omda/presentation/screens/orders/views/open_order_view.dart';
-export 'package:china_omda/presentation/screens/orders/views/requests_need_payment_view.dart';
-export 'package:china_omda/presentation/screens/orders/views/requests_order_view.dart';
 export 'package:china_omda/presentation/global_widget/global_drop_down_button.dart';
 export 'package:china_omda/presentation/presentation_managers/routes_manager.dart';
 export 'package:china_omda/presentation/screens/auth/views/confirm_code_view.dart';
@@ -99,5 +94,6 @@ export 'package:china_omda/app/bloc_observer.dart';
 export 'package:china_omda/presentation/presentation_managers/constancts_manager.dart';
 export 'package:china_omda/presentation/screens/orders/cubit/orders_cubit.dart';
 export 'package:jiffy/jiffy.dart';
-
-
+export 'package:china_omda/models/banner_model.dart';
+export 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
+export 'package:china_omda/presentation/screens/orders/views/orders_view.dart';

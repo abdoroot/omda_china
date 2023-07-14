@@ -1,8 +1,15 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
+import 'package:china_omda/presentation/screens/orders/views/widget/orders_item.dart';
 
-class RequestsOrderView extends StatelessWidget {
-  const RequestsOrderView({Key? key}) : super(key: key);
+class OrdersView extends StatelessWidget {
+  final String title;
+  final List<OrderModel> orders;
+
+  const OrdersView({
+    Key? key,
+    required this.orders,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +23,8 @@ class RequestsOrderView extends StatelessWidget {
           endDrawerEnableOpenDragGesture: lang == 'English' ? true : false,
           body: Column(
             children: [
-              const HeaderView(
-                headerText: AppStrings.requestsOrders,
+              HeaderView(
+                headerText: title,
                 isLogin: false,
               ),
               Expanded(
@@ -35,9 +42,12 @@ class RequestsOrderView extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
-                                return const SizedBox();
+                                return OrdersItem(
+                                  orderModel: orders[index],
+                                  orderIndex: index,
+                                );
                               },
-                              itemCount: 6,
+                              itemCount: orders.length,
                             ),
                           ],
                         ),

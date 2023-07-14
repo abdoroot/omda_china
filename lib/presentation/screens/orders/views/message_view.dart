@@ -3,7 +3,12 @@ import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
 import 'package:china_omda/presentation/screens/orders/views/widget/product_item.dart';
 
 class MessageView extends StatelessWidget {
-  const MessageView({Key? key}) : super(key: key);
+  final OrderModel model;
+
+  const MessageView({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +33,8 @@ class MessageView extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 3.w),
-                        child: const ProductItem(),
+                        child:  ProductItem(model: model),
                       ),
-
                     ],
                   ),
                 ),

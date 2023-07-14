@@ -1,5 +1,4 @@
 import 'package:china_omda/app/app_lang_cach.dart';
-import 'package:china_omda/models/banner_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 part 'home_state.dart';
 

@@ -5,7 +5,12 @@ import 'package:china_omda/presentation/screens/orders/views/widget/documentatio
 import 'package:china_omda/presentation/screens/orders/views/widget/product_item.dart';
 
 class DocumentationView extends StatelessWidget {
-  const DocumentationView({Key? key}) : super(key: key);
+  final OrderModel model;
+
+  const DocumentationView({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +39,11 @@ class DocumentationView extends StatelessWidget {
                           text: AppStrings.newDocument.tr(context),
                           color: ColorManager.black,
                           colorText: ColorManager.white,
-                          onPressed: ()
-                          {
+                          onPressed: () {
                             Navigator.of(context, rootNavigator: true).push(
                               MaterialPageRoute(
                                 builder: (context) {
                                   return const AddDocumentationView();
-                                  
                                 },
                               ),
                             );
@@ -48,7 +51,7 @@ class DocumentationView extends StatelessWidget {
                           height: 5.h,
                           width: 45.w,
                         ),
-                        const ProductItem(),
+                        ProductItem(model: model),
                         DividerDashboard(
                           text: AppStrings.documentation.tr(context),
                           color: ColorManager.primary,
@@ -61,10 +64,7 @@ class DocumentationView extends StatelessWidget {
                             Text(
                               AppStrings.number.tr(context),
                               style: TextStyle(
-                                  fontSize:
-                                      AppStrings.lang.tr(context) == 'English'
-                                          ? 10.sp
-                                          : 9.sp,
+                                  fontSize: AppStrings.lang.tr(context) == 'English' ? 10.sp : 9.sp,
                                   color: ColorManager.black,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -114,8 +114,7 @@ class DocumentationView extends StatelessWidget {
                             );
                           },
                           itemCount: 6,
-                          separatorBuilder: (BuildContext context, int index) =>
-                              SizedBox(
+                          separatorBuilder: (BuildContext context, int index) => SizedBox(
                             height: 1.5.h,
                           ),
                         ),

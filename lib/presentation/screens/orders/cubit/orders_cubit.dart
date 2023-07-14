@@ -1,5 +1,4 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
 
 class OrdersCubit extends Cubit<OrdersState> {
   OrdersCubit() : super(OrdersInitialState());
@@ -11,6 +10,7 @@ class OrdersCubit extends Cubit<OrdersState> {
         .collection('users')
         .doc(uId)
         .collection('orders')
+        .orderBy('orderDate', descending: true)
         .where('orderStatus', isEqualTo: 'Opened')
         .snapshots()
         .map(
@@ -23,6 +23,7 @@ class OrdersCubit extends Cubit<OrdersState> {
         .collection('users')
         .doc(uId)
         .collection('orders')
+        .orderBy('orderDate', descending: true)
         .where('orderStatus', isEqualTo: 'To pay')
         .snapshots()
         .map(
@@ -35,6 +36,7 @@ class OrdersCubit extends Cubit<OrdersState> {
         .collection('users')
         .doc(uId)
         .collection('orders')
+        .orderBy('orderDate', descending: true)
         .where('orderStatus', isEqualTo: 'Finished')
         .snapshots()
         .map(
@@ -47,6 +49,7 @@ class OrdersCubit extends Cubit<OrdersState> {
         .collection('users')
         .doc(uId)
         .collection('orders')
+        .orderBy('orderDate', descending: true)
         .where('orderStatus', isEqualTo: 'Shipment')
         .snapshots()
         .map(
@@ -59,6 +62,7 @@ class OrdersCubit extends Cubit<OrdersState> {
         .collection('users')
         .doc(uId)
         .collection('orders')
+        .orderBy('orderDate', descending: true)
         .where('orderStatus', isEqualTo: 'Canceled')
         .snapshots()
         .map(
