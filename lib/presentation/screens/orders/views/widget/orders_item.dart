@@ -1,5 +1,5 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
+import 'package:china_omda/presentation/screens/orders/views/widget/show_orders_images.dart';
 
 class OrdersItem extends StatelessWidget {
   final OrderModel orderModel;
@@ -114,11 +114,19 @@ class OrdersItem extends StatelessWidget {
                         Row(
                           children: [
                             ButtonOrders(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context, rootNavigator: true).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => ShowOrderImage(
+                                      products: orderModel.products,
+                                    ),
+                                  ),
+                                );
+                              },
                               width: 15.w,
                               height: 4.5.h,
                               color: ColorManager.primaryGreen,
-                              text: AppStrings.show.tr(context),
+                              text: AppStrings.view.tr(context),
                               colorText: ColorManager.black,
                             ),
                             SizedBox(width: 0.7.w),
@@ -127,7 +135,7 @@ class OrdersItem extends StatelessWidget {
                                 Navigator.of(context, rootNavigator: true).push(
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return const InvoicesView();
+                                      return InvoicesView(orderModel: orderModel);
                                     },
                                   ),
                                 );
@@ -144,7 +152,7 @@ class OrdersItem extends StatelessWidget {
                                 Navigator.of(context, rootNavigator: true).push(
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return const MessageView();
+                                      return MessageView(model: orderModel);
                                     },
                                   ),
                                 );
@@ -161,7 +169,7 @@ class OrdersItem extends StatelessWidget {
                                 Navigator.of(context, rootNavigator: true).push(
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return const DocumentationView();
+                                      return DocumentationView(model: orderModel);
                                     },
                                   ),
                                 );

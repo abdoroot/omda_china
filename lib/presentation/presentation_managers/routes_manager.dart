@@ -7,7 +7,6 @@ import 'package:china_omda/presentation/screens/admin_panel/views/payment_gates/
 import 'package:china_omda/presentation/screens/admin_panel/views/profits_and_losses/add_profits_and_losses.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/profits_and_losses/profits_and_losses_view.dart';
 import 'package:china_omda/presentation/screens/admin_panel/views/users/users_view.dart';
-import 'package:china_omda/presentation/screens/events/views/events_view.dart';
 
 class Routes {
   static const String splashRoute = '/';
@@ -73,7 +72,7 @@ class RoutesGenerator {
       case Routes.adminPanel:
         return MaterialPageRoute(builder: (_) => const AdminPanelView());
       case Routes.eventView:
-        return MaterialPageRoute(builder: (_) => const EventsView());
+        return MaterialPageRoute(builder: (_) => const AdminEventsView());
       case Routes.addEvent:
         return MaterialPageRoute(builder: (_) => AddEvents());
       case Routes.holidayView:

@@ -86,13 +86,13 @@ class ControlPanelView extends StatelessWidget {
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return OpenedOrdersView(openOrders: snapshot.data ?? []);
-                                      },
-                                    ),
-                                  );
+                                  // Navigator.of(context, rootNavigator: true).push(
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return OpenedOrdersView(openOrders: snapshot.data ?? []);
+                                  //     },
+                                  //   ),
+                                  // );
                                 },
                                 image: ImageAssets.choices,
                                 text: AppStrings.open.tr(context),
@@ -107,13 +107,13 @@ class ControlPanelView extends StatelessWidget {
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const RequestsNeedPaymentView();
-                                      },
-                                    ),
-                                  );
+                                  // Navigator.of(context, rootNavigator: true).push(
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return const RequestsNeedPaymentView();
+                                  //     },
+                                  //   ),
+                                  // );
                                 },
                                 image: ImageAssets.pay,
                                 text: AppStrings.pay.tr(context),
@@ -129,13 +129,13 @@ class ControlPanelView extends StatelessWidget {
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const ExpiredRequestsView();
-                                      },
-                                    ),
-                                  );
+                                  // Navigator.of(context, rootNavigator: true).push(
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return const ExpiredRequestsView();
+                                  //     },
+                                  //   ),
+                                  // );
                                 },
                                 image: ImageAssets.done,
                                 text: AppStrings.finished.tr(context),
@@ -151,13 +151,13 @@ class ControlPanelView extends StatelessWidget {
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const RequestsOrderView();
-                                      },
-                                    ),
-                                  );
+                                  // Navigator.of(context, rootNavigator: true).push(
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return const RequestsOrderView();
+                                  //     },
+                                  //   ),
+                                  // );
                                 },
                                 image: ImageAssets.verified,
                                 text: AppStrings.byShipment.tr(context),
@@ -172,13 +172,13 @@ class ControlPanelView extends StatelessWidget {
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
-                                  Navigator.of(context, rootNavigator: true).push(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const CanceledOrdersView();
-                                      },
-                                    ),
-                                  );
+                                  // Navigator.of(context, rootNavigator: true).push(
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return const CanceledOrdersView();
+                                  //     },
+                                  //   ),
+                                  // );
                                 },
                                 image: ImageAssets.cancel,
                                 text: AppStrings.canceled.tr(context),

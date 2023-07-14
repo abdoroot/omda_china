@@ -1,11 +1,15 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
 import 'package:china_omda/presentation/screens/orders/views/details_invoices_view.dart';
 import 'package:china_omda/presentation/screens/orders/views/widget/order_bills_widget.dart';
 import 'package:china_omda/presentation/screens/orders/views/widget/product_item.dart';
 
 class InvoicesView extends StatelessWidget {
-  const InvoicesView({Key? key}) : super(key: key);
+  final OrderModel orderModel;
+
+  const InvoicesView({
+    Key? key,
+    required this.orderModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class InvoicesView extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 2.w),
                     child: Column(
                       children: [
-                        const ProductItem(),
+                        ProductItem(model: orderModel),
                         DividerDashboard(
                           text: AppStrings.orderBills.tr(context),
                           color: ColorManager.primary,
@@ -90,27 +94,28 @@ class InvoicesView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        ListView.separated(
-                          padding: EdgeInsets.only(bottom: 0.1.h),
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return OrderBillsWidget(onTap: ()
-                            {
-                              Navigator.of(context, rootNavigator: true).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const DetailsInvoicesView();
-                                  },
-                                ),
-                              );
-                            },);
-                          },
-                          itemCount: 6,
-                          separatorBuilder: (BuildContext context, int index) => SizedBox(
-                            height: 1.5.h,
-                          ),
-                        ),
+                        // ListView.separated(
+                        //   padding: EdgeInsets.only(bottom: 0.1.h),
+                        //   shrinkWrap: true,
+                        //   physics: const NeverScrollableScrollPhysics(),
+                        //   itemBuilder: (context, index) {
+                        //     return OrderBillsWidget(
+                        //       onTap: () {
+                        //         Navigator.of(context, rootNavigator: true).push(
+                        //           MaterialPageRoute(
+                        //             builder: (context) {
+                        //               return const DetailsInvoicesView();
+                        //             },
+                        //           ),
+                        //         );
+                        //       },
+                        //     );
+                        //   },
+                        //   itemCount: 6,
+                        //   separatorBuilder: (BuildContext context, int index) => SizedBox(
+                        //     height: 1.5.h,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

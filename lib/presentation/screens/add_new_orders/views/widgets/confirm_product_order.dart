@@ -11,7 +11,8 @@ class ConfirmProductOrder extends StatelessWidget {
         var lang = AppStrings.lang.tr(context);
         AddOrdersCubit cubit = AddOrdersCubit.get(context);
         cubit.orderDate.text = Jiffy.now().format(pattern: 'dd/MM/yyyy');
-        cubit.orderTypeController.text = cubit.orderType!.tr(context);
+        cubit.orderTypeController.text =
+            cubit.orderType == null ? '' : cubit.orderType!.tr(context);
         return Scaffold(
           drawerEnableOpenDragGesture: lang == 'English' ? false : true,
           endDrawerEnableOpenDragGesture: lang == 'English' ? true : false,
@@ -93,7 +94,10 @@ class ConfirmProductOrder extends StatelessWidget {
                                   enabled: false,
                                   lableText: AppStrings.priceUp,
                                   controller: TextEditingController(
-                                      text: cubit.priceUpOfExpected!.tr(context)),
+                                    text: cubit.priceUpOfExpected == null
+                                        ? ''
+                                        : cubit.priceUpOfExpected!.tr(context),
+                                  ),
                                   keyboardType: TextInputType.number,
                                 ),
                                 SizedBox(height: 3.h),

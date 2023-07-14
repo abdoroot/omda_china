@@ -1,9 +1,8 @@
-import 'package:china_omda/models/banner_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'package:china_omda/presentation/screens/orders/cubit/orders_state.dart';
 
 class MyDashboardView extends StatelessWidget {
   final bool isLogin;
+
   const MyDashboardView({
     Key? key,
     required this.isLogin,
@@ -116,8 +115,10 @@ class MyDashboardView extends StatelessWidget {
                                         Navigator.of(context, rootNavigator: true).push(
                                           MaterialPageRoute(
                                             builder: (context) {
-                                              return OpenedOrdersView(
-                                                  openOrders: snapshot.data ?? []);
+                                              return OrdersView(
+                                                orders: snapshot.data ?? [],
+                                                title: AppStrings.openOrders,
+                                              );
                                             },
                                           ),
                                         );
@@ -138,7 +139,10 @@ class MyDashboardView extends StatelessWidget {
                                         Navigator.of(context, rootNavigator: true).push(
                                           MaterialPageRoute(
                                             builder: (context) {
-                                              return const RequestsNeedPaymentView();
+                                              return OrdersView(
+                                                orders: snapshot.data ?? [],
+                                                title: AppStrings.requestsNeedPayment,
+                                              );
                                             },
                                           ),
                                         );
@@ -166,7 +170,10 @@ class MyDashboardView extends StatelessWidget {
                                         Navigator.of(context, rootNavigator: true).push(
                                           MaterialPageRoute(
                                             builder: (context) {
-                                              return const ExpiredRequestsView();
+                                              return OrdersView(
+                                                title: AppStrings.expiredRequests,
+                                                orders: snapshot.data ?? [],
+                                              );
                                             },
                                           ),
                                         );
@@ -188,7 +195,10 @@ class MyDashboardView extends StatelessWidget {
                                         Navigator.of(context, rootNavigator: true).push(
                                           MaterialPageRoute(
                                             builder: (context) {
-                                              return const RequestsOrderView();
+                                              return OrdersView(
+                                                title: AppStrings.requestsOrders,
+                                                orders: snapshot.data ?? [],
+                                              );
                                             },
                                           ),
                                         );
@@ -211,7 +221,10 @@ class MyDashboardView extends StatelessWidget {
                                     Navigator.of(context, rootNavigator: true).push(
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const CanceledOrdersView();
+                                          return OrdersView(
+                                            orders: snapshot.data ?? [],
+                                            title: AppStrings.canceledOrders,
+                                          );
                                         },
                                       ),
                                     );
