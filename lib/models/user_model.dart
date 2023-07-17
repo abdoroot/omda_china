@@ -6,6 +6,7 @@ class UserModel {
   String? email;
   String? accountType;
   String? country;
+  String? countryCode;
   String? password;
   bool? accountStatus;
   String? registerDate;
@@ -23,6 +24,7 @@ class UserModel {
     required this.lastMessage,
     required this.registerDate,
     required this.accountType,
+    required this.countryCode,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class UserModel {
     email = json['email'];
     phone = json['phone'];
     country = json['country'];
+    countryCode = json['countryCode'];
     password = json['password'];
     accountStatus = json['accountStatus'];
     lastMessage = json['lastMessage'];
@@ -48,6 +51,7 @@ class UserModel {
       'phone': phone,
       'password': password,
       'country': country,
+      'countryCode': countryCode,
       'accountStatus': accountStatus,
       'lastMessage': lastMessage,
       'registerDate': registerDate,

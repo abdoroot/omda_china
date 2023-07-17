@@ -244,4 +244,7 @@ class AppStrings {
   static const String numberOfUser = "number_of_user";
   static const String dateOfRegistration = "date_of_registration";
   static const String userProfile = "user_profile";
+  static const String timeChina = "time_china";
+  static const String weatherChina = "weather_china";
+  static const String nextHolidayChina = "next_holiday_china";
 }

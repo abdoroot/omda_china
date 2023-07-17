@@ -1,7 +1,29 @@
+import 'package:china_omda/models/china_time.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
+import 'package:http/http.dart' as http;
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  late Timer timer;
+  late ChinaTime chinaTime;
+
+  @override
+  void initState() {
+    super.initState();
+    chinaTime = ChinaTime();
+
+    fetchChinaTimeData();
+
+    timer = Timer.periodic(const Duration(seconds: 60), (timer) {
+      fetchChinaTimeData();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +71,11 @@ class HomeView extends StatelessWidget {
                                     'assets/images/weather.png',
                                   ),
                                   const Spacer(),
-                                  const Text(
-                                    'الطقس الان في الصين',
+                                  Text(
+                                    AppStrings.weatherChina.tr(context),
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -60,14 +85,26 @@ class HomeView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(top: 8.0.h),
-                                    child: Image.asset(
-                                      'assets/images/time.png',
+                                    padding: EdgeInsets.only(top: 8.h),
+                                    child: Text(
+                                      chinaTime.dateTime == null
+                                          ? ''
+                                          : Jiffy.parse(chinaTime.dateTime!)
+                                              .format(pattern: 'h:mm a'),
+                                      textDirection: TextDirection.ltr,
+                                      style: TextStyle(
+                                        color: ColorManager.black,
+                                        fontSize: 24.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   const Spacer(),
-                                  const Text(
-                                    'الوقت الان في الصين',
+                                  Text(
+                                    AppStrings.timeChina.tr(context),
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -78,7 +115,7 @@ class HomeView extends StatelessWidget {
                     ),
                     SizedBox(height: 2.h),
                     Text(
-                      'العطلة القادمة بالصين بعد',
+                      AppStrings.nextHolidayChina.tr(context),
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 16.sp,
@@ -143,5 +180,27 @@ class HomeView extends StatelessWidget {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  void fetchChinaTimeData() async {
+    final response = await http.get(Uri.parse(
+        'https://api.ipgeolocation.io/timezone?apiKey=4127f9d52170457c90aff375ea6c158a&tz=Asia/Shanghai'));
+
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body);
+      setState(() {
+        chinaTime = ChinaTime.fromJson(decodedData);
+      });
+    } else {
+      setState(() {
+        print(response.body);
+      });
+    }
   }
 }

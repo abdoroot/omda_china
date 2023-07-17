@@ -16,6 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController regPhoneController = TextEditingController();
   TextEditingController regEmailController = TextEditingController();
   TextEditingController regCountryController = TextEditingController();
+  TextEditingController regCountryCodeController = TextEditingController();
   TextEditingController regPassController = TextEditingController();
   TextEditingController regConfirmPassController = TextEditingController();
 
@@ -72,6 +73,7 @@ class AuthCubit extends Cubit<AuthState> {
     required String phone,
     required String password,
     required String country,
+    required String countryCode,
     required String email,
     required String name,
     required String accountType,
@@ -90,6 +92,7 @@ class AuthCubit extends Cubit<AuthState> {
               accountStatus: true,
               accountType: accountType,
               country: country,
+              countryCode: countryCode,
               email: email,
               lastMessage: '',
               name: name,
