@@ -1,6 +1,8 @@
 import 'package:china_omda/app/whatsapp_code.dart';
+import 'package:china_omda/presentation/global_widget/omda_intl_number.dart';
 import 'package:china_omda/presentation/global_widget/omda_otp_text_field.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
@@ -55,11 +57,14 @@ class LoginView extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  GlobalIntlTextFormField(
+                  OmdaIntlNumber(
                     controller: cubit.loginPhoneController,
-                    filledColor: ColorManager.white,
-                    horizontal: 9.w,
                   ),
+                  // GlobalIntlTextFormField(
+                  //   controller: cubit.loginPhoneController,
+                  //   filledColor: ColorManager.white,
+                  //   horizontal: 9.w,
+                  // ),
                   Text(
                     AppStrings.pinCode.tr(context),
                     style: TextStyle(
