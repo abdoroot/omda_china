@@ -247,7 +247,7 @@ class MyDashboardView extends StatelessWidget {
                         width: double.infinity,
                         height: 18.h,
                         child: StreamBuilder<List<BannerModel>>(
-                            stream: HomeCubit.get(context).getAllActiveBanners(),
+                            stream: BottomNavBarCubit.get(context).getAllActiveBanners(),
                             builder: (context, snapshot) {
                               if (snapshot.data == null) {
                                 return const SizedBox();

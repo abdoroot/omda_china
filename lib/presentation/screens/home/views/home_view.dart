@@ -17,9 +17,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     chinaTime = ChinaTime();
-
     fetchChinaTimeData();
-
     timer = Timer.periodic(const Duration(seconds: 60), (timer) {
       fetchChinaTimeData();
     });
@@ -27,10 +25,10 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeState>(
+    return BlocConsumer<BottomNavBarCubit, BottomNavBarState>(
       listener: (context, state) {},
       builder: (context, state) {
-        HomeCubit cubit = HomeCubit.get(context);
+        BottomNavBarCubit cubit = BottomNavBarCubit.get(context);
         return Column(
           children: [
             HeaderView(
@@ -125,7 +123,7 @@ class _HomeViewState extends State<HomeView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '128',
+                          ' ${cubit.remainingDays}',
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 26.sp,

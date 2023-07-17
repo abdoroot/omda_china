@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => HomeCubit()..getSavedLanguage()),
-            BlocProvider(create: (context) => BottomNavBarCubit()),
+            BlocProvider(create: (context) => BottomNavBarCubit()..getLastHoliday()),
             BlocProvider(create: (context) => ChangeControlPasswordCubit()),
             BlocProvider(create: (context) => AuthCubit()),
             BlocProvider(create: (context) => OrdersCubit()),
