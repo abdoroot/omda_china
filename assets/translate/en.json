@@ -243,7 +243,11 @@
     "profit" : "Profit",
     "number_of_user" : "Users number",
     "date_of_registration":"Date of registration",
-    "user_profile":"User profile"
+    "user_profile":"User profile",
+    "time_china":"Time in China now",
+    "weather_china":"China weather now",
+    "next_holiday_china":"Next holiday in China yet"
+
 
 
 

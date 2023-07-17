@@ -245,7 +245,13 @@
    "profit" : "ربح",
    "number_of_user" : "عدد المستخدمين",
    "date_of_registration":"تاريخ التسجيل",
-   "user_profile":"الملف الشخصي للمستخدم"
+   "user_profile":"الملف الشخصي للمستخدم",
+   "time_china":"الوقت في الصين الآن",
+   "weather_china":"الطقس في الصين الآن",
+   "next_holiday_china":"العطلة القادمة بالصين بعد"
+
+
+
 
 
 

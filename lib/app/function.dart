@@ -1,6 +1,4 @@
-import 'dart:math';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 //import 'package:get_ip_address/get_ip_address.dart';
@@ -66,3 +64,20 @@ Future<void> launchUniversalLinkIos(Uri url) async {
     );
   }
 }
+
+Image getCountryFlagIcon(String countryName) {
+  String countryCode = countryName.toUpperCase();
+
+  // Find the corresponding icon name based on the country code
+  String iconName = 'icons/flags/png/${countryCode.toLowerCase()}.png';
+
+  return Image.asset(
+    iconName,
+    package: 'country_icons',
+    height: 6.h,
+    width: 20.w,
+    fit: BoxFit.contain,
+  );
+}
+
+

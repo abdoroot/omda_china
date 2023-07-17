@@ -72,6 +72,7 @@ class ConfirmCodeView extends StatelessWidget {
                               email: cubit.regEmailController.text,
                               name: cubit.regNameController.text,
                               accountType: cubit.accountType!,
+                              countryCode: cubit.regCountryCodeController.text,
                             );
                           }
                         }
@@ -119,6 +120,7 @@ class ConfirmCodeView extends StatelessWidget {
                                 email: cubit.regEmailController.text,
                                 name: cubit.regNameController.text,
                                 accountType: cubit.accountType!,
+                                countryCode: cubit.regCountryCodeController.text,
                               );
                             }
                           }

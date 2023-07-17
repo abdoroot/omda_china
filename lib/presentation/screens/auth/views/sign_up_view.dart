@@ -102,6 +102,7 @@ class SignUpView extends StatelessWidget {
                               ),
                               onSelect: (Country country) {
                                 cubit.regCountryController.text = country.name;
+                                cubit.regCountryCodeController.text = country.countryCode;
                               },
                             );
                           },
@@ -110,6 +111,7 @@ class SignUpView extends StatelessWidget {
                             textInputType: TextInputType.text,
                             textController: cubit.regCountryController,
                             hintText: AppStrings.country.tr(context),
+
                             style: TextStyle(
                               color: ColorManager.black,
                             ),

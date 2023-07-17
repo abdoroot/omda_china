@@ -40,6 +40,7 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
     return firestore
         .collection('events')
         .where('status', isEqualTo: true)
+        .orderBy('startDate', descending: true)
         .snapshots()
         .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
   }
@@ -48,6 +49,7 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
     return firestore
         .collection('holidays')
         .where('status', isEqualTo: true)
+        .orderBy('startDate', descending: true)
         .snapshots()
         .map((event) => event.docs.map((e) => EventModel.fromJson(e.data())).toList());
   }

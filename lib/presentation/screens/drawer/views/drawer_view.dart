@@ -33,11 +33,7 @@ class DrawerView extends StatelessWidget {
                             ? const SizedBox()
                             : Column(
                                 children: [
-                                  Container(
-                                    height: 5.h,
-                                    width: 15.w,
-                                    color: Colors.yellow,
-                                  ),
+                                  getCountryFlagIcon(snapshot.data!.countryCode ?? ''),
                                   Text(
                                     snapshot.data == null ? '' : snapshot.data!.name ?? 'User Name',
                                     style: TextStyle(
