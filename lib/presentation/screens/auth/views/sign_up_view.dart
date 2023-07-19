@@ -1,4 +1,4 @@
-import 'package:china_omda/app/whatsapp_code.dart';
+import 'package:china_omda/presentation/global_widget/omda_intl_number.dart';
 import 'package:china_omda/presentation/global_widget/omda_otp_text_field.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
@@ -50,11 +50,7 @@ class SignUpView extends StatelessWidget {
                           hintText: AppStrings.fullName.tr(context),
                         ),
                         SizedBox(height: 2.h),
-                        GlobalIntlTextFormField(
-                          horizontal: 9.w,
-                          filledColor: ColorManager.white,
-                          controller: cubit.regPhoneController,
-                        ),
+                        OmdaIntlNumber(controller: cubit.regPhoneController),
                         SizedBox(height: 2.h),
                         GlobalTextFormField(
                           textInputType: TextInputType.emailAddress,
@@ -168,15 +164,14 @@ class SignUpView extends StatelessWidget {
                         cubit.regConfirmPassController.text = value;
                         if (regKey.currentState!.validate()) {
                           if (cubit.checkPassword()) {
-                            Whatsapp.sendWhatsAppMessage();
-                            // cubit.twilioServices.sendSMS(cubit.regPhoneController.text).then(
-                            //   (value) {
-                            //     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-                            //       MaterialPageRoute(builder: (context) => ConfirmCodeView()),
-                            //       (route) => false,
-                            //     );
-                            //   },
-                            // );
+                            cubit.twilioServices.sendSMS(cubit.regPhoneController.text).then(
+                              (value) {
+                                Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                                  MaterialPageRoute(builder: (context) => ConfirmCodeView()),
+                                  (route) => false,
+                                );
+                              },
+                            );
                           }
                         }
                       },
@@ -189,15 +184,14 @@ class SignUpView extends StatelessWidget {
                           onTap: () {
                             if (regKey.currentState!.validate()) {
                               if (cubit.checkPassword()) {
-                                Whatsapp.sendWhatsAppMessage();
-                                // cubit.twilioServices.sendSMS(cubit.regPhoneController.text).then(
-                                //   (value) {
-                                //     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-                                //       MaterialPageRoute(builder: (context) => ConfirmCodeView()),
-                                //       (route) => false,
-                                //     );
-                                //   },
-                                // );
+                                cubit.twilioServices.sendSMS(cubit.regPhoneController.text).then(
+                                  (value) {
+                                    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                                      MaterialPageRoute(builder: (context) => ConfirmCodeView()),
+                                      (route) => false,
+                                    );
+                                  },
+                                );
                               }
                             }
                           },

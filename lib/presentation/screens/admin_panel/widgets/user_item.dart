@@ -12,8 +12,6 @@ class UserItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var lang = AppStrings.lang.tr(context);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

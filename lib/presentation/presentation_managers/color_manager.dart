@@ -28,5 +28,6 @@ class ColorManager {
   static Color blueAccount = const Color(0xff3CE3B3);
   static Color whitGrey = const Color(0xff44445b);
   static Color violate = const Color(0xff948BFF);
+  static Color blueBotton = const Color(0xff1E41BD);
 
 }

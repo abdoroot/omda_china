@@ -1,3 +1,4 @@
+import 'package:china_omda/presentation/global_widget/omda_intl_number.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class ForgetView extends StatelessWidget {
@@ -39,11 +40,7 @@ class ForgetView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 3.h),
-                    GlobalIntlTextFormField(
-                      horizontal: 9.w,
-                      controller: cubit.forgetPasswordController,
-                      filledColor: ColorManager.white,
-                    ),
+                    OmdaIntlNumber(controller: cubit.forgetPasswordController),
                     SizedBox(height: 27.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

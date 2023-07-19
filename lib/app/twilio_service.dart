@@ -15,13 +15,13 @@ class TwilioServices {
     code = verifyCode;
 
     print(code);
-    twilioFlutter.sendWhatsApp(
-      toNumber: '+972597701145',
-      messageBody: "The verify code $verifyCode",
-    );
-    // await twilioFlutter.sendSMS(
-    //   toNumber: phoneNumber,
+    // twilioFlutter.sendWhatsApp(
+    //   toNumber: '+972597701145',
     //   messageBody: "The verify code $verifyCode",
     // );
+    await twilioFlutter.sendSMS(
+      toNumber: phoneNumber,
+      messageBody: "The verify code $verifyCode",
+    );
   }
 }

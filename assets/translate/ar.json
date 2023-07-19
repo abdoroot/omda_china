@@ -248,7 +248,13 @@
    "user_profile":"الملف الشخصي للمستخدم",
    "time_china":"الوقت في الصين الآن",
    "weather_china":"الطقس في الصين الآن",
-   "next_holiday_china":"العطلة القادمة بالصين بعد"
+   "next_holiday_china":"العطلة القادمة بالصين بعد",
+   "orders_number":"عدد الطلبات",
+   "change_order_status":"تغيير حالة الطلب",
+   "order_path":"مسار الطلب"
+
+
+
 
 
 

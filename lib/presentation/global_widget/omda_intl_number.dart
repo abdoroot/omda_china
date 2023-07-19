@@ -7,7 +7,10 @@ class OmdaIntlNumber extends StatelessWidget {
   final bool? filled;
   final String? intialCountryCode;
   final double? padding;
+  final double? height;
+  final double? borderRadius;
   final Color? borderColor;
+  final String? phoneNumber;
 
   const OmdaIntlNumber({
     super.key,
@@ -17,6 +20,9 @@ class OmdaIntlNumber extends StatelessWidget {
     this.padding,
     this.filled,
     this.borderColor,
+    this.height,
+    this.borderRadius,
+    this.phoneNumber,
   });
 
   @override
@@ -32,6 +38,7 @@ class OmdaIntlNumber extends StatelessWidget {
           initialCountryCode: intialCountryCode ?? countryCode,
           enabled: enabled ?? true,
           keyboardType: TextInputType.phone,
+          controller: TextEditingController(text: phoneNumber ?? ''),
           validator: (value) {
             if (value.toString().isEmpty) {
               return 'Enter your number';
@@ -41,25 +48,25 @@ class OmdaIntlNumber extends StatelessWidget {
           decoration: InputDecoration(
             counter: const SizedBox.shrink(),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(borderRadius ?? 10),
               borderSide: const BorderSide(
                 color: Colors.transparent,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(borderRadius ?? 10),
               borderSide: BorderSide(
                 color: borderColor ?? Colors.transparent,
               ),
             ),
             constraints: BoxConstraints(
-              maxHeight: 8.h,
+              maxHeight: height ?? 8.h,
             ),
             filled: filled ?? true,
             fillColor: ColorManager.white,
             isDense: true,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(borderRadius ?? 10),
               borderSide: BorderSide(
                 color: borderColor ?? Colors.transparent,
               ),
