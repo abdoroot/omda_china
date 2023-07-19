@@ -1,3 +1,4 @@
+import 'package:china_omda/presentation/global_widget/omda_intl_number.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class ProfileView extends StatelessWidget {
@@ -65,12 +66,16 @@ class ProfileView extends StatelessWidget {
                             StreamBuilder<UserModel>(
                               stream: cubit.getUserData(),
                               builder: (context, snapshot) {
-                                cubit.phoneController.text =
-                                    snapshot.data == null ? '' : snapshot.data!.phone!.substring(4);
-                                return GlobalIntlTextFormField(
-                                  controller: cubit.phoneController,
-                                  height: 8.h,
+                                return OmdaIntlNumber(
                                   enabled: false,
+                                  intialCountryCode: snapshot.data!.countryCode!.toUpperCase(),
+                                  controller: cubit.phoneController,
+                                  filled: false,
+                                  borderColor: ColorManager.borderGrey,
+                                  padding: 0,
+                                  height: 10.h,
+                                  borderRadius: 5,
+                                  phoneNumber: snapshot.data!.phone!.replaceRange(0, 4, ''),
                                 );
                               },
                             ),

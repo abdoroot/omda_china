@@ -1,7 +1,6 @@
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-//import 'package:get_ip_address/get_ip_address.dart';
 
 Future<String> generateUniqueId() async {
   DateTime now = DateTime.now();

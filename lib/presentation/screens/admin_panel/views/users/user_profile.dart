@@ -1,3 +1,4 @@
+import 'package:china_omda/presentation/global_widget/omda_intl_number.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class UserProfile extends StatelessWidget {
@@ -17,7 +18,6 @@ class UserProfile extends StatelessWidget {
         var lang = AppStrings.lang.tr(context);
         cubit.idController.text = userModel.id ?? '';
         cubit.nameController.text = userModel.name ?? '';
-        cubit.phoneController.text = userModel.phone!.substring(4);
         cubit.emailController.text = userModel.email ?? '';
         cubit.countryController.text = userModel.country ?? '';
         cubit.accountTypeController.text = userModel.accountType!.tr(context);
@@ -85,12 +85,17 @@ class UserProfile extends StatelessWidget {
                               enabled: true,
                             ),
                             SizedBox(height: 2.h),
-                            GlobalIntlTextFormField(
+                            OmdaIntlNumber(
+                              intialCountryCode: userModel.countryCode!.toUpperCase(),
                               controller: cubit.phoneController,
-                              height: 8.h,
-                              enabled: true,
+                              filled: false,
+                              borderColor: ColorManager.borderGrey,
+                              padding: 0,
+                              height: 10.h,
+                              borderRadius: 5,
+                              phoneNumber: userModel.phone!.replaceRange(0, 4, ''),
                             ),
-                            SizedBox(height: 2.5.h),
+                            SizedBox(height: 2.h),
                             OmdaTextFormFiled(
                               lableText: AppStrings.email,
                               enabled: true,

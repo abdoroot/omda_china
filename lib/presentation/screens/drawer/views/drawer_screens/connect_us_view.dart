@@ -1,3 +1,4 @@
+import 'package:china_omda/presentation/global_widget/omda_intl_number.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
 
 class ConnectWithUsView extends StatelessWidget {
@@ -62,10 +63,13 @@ class ConnectWithUsView extends StatelessWidget {
                                 controller: cubit.connectEmailController,
                               ),
                               SizedBox(height: 2.h),
-                              GlobalIntlTextFormField(
-                                height: 8.h,
-                                width: double.infinity,
+                              OmdaIntlNumber(
                                 controller: cubit.connectPhoneController,
+                                filled: false,
+                                borderColor: ColorManager.borderGrey,
+                                padding: 0,
+                                height: 10.h,
+                                borderRadius: 5,
                               ),
                               SizedBox(height: 2.h),
                               OmdaTextArea(

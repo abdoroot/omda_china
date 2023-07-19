@@ -246,7 +246,10 @@
     "user_profile":"User profile",
     "time_china":"Time in China now",
     "weather_china":"China weather now",
-    "next_holiday_china":"Next holiday in China yet"
+    "next_holiday_china":"Next holiday in China yet",
+    "orders_number":"Orders number",
+    "change_order_status":"Change order status",
+    "order_path":"Order path"
 
 
 

@@ -1,5 +1,6 @@
-import 'package:china_omda/models/external_message_model.dart';
 import 'package:china_omda/presentation/presentation_managers/exports.dart';
+import 'package:china_omda/models/external_message_model.dart';
+import 'package:china_omda/presentation/screens/admin_panel/views/orders/orders_view.dart';
 import 'package:china_omda/presentation/screens/admin_panel/widgets/settings_item.dart';
 
 class ControlPanelView extends StatelessWidget {
@@ -86,13 +87,16 @@ class ControlPanelView extends StatelessWidget {
                             builder: (context, snapshot) {
                               return DashboardItem(
                                 onTap: () {
-                                  // Navigator.of(context, rootNavigator: true).push(
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) {
-                                  //       return OpenedOrdersView(openOrders: snapshot.data ?? []);
-                                  //     },
-                                  //   ),
-                                  // );
+                                  Navigator.of(context, rootNavigator: true).push(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return  AdminOrdersView(
+                                          title: AppStrings.openOrders,
+                                          orders: snapshot.data ?? [],
+                                        );
+                                      },
+                                    ),
+                                  );
                                 },
                                 image: ImageAssets.choices,
                                 text: AppStrings.open.tr(context),

@@ -247,4 +247,7 @@ class AppStrings {
   static const String timeChina = "time_china";
   static const String weatherChina = "weather_china";
   static const String nextHolidayChina = "next_holiday_china";
+  static const String ordersNumber = "orders_number";
+  static const String changeOrderStatus = "change_order_status";
+  static const String orderPath = "order_path";
 }
